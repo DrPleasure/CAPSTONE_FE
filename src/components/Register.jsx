@@ -62,7 +62,7 @@ const Register = () => {
         const data = await response.json()
         console.log('Response status:', response.status);
         console.log('Access token:', data.token);
-        localStorage.setItem('accessToken', data.token)
+        localStorage.setItem('accessToken', data.accessToken)
         console.log('Saved access token:', localStorage.getItem('accessToken'));
         navigate('/')
       } else {
