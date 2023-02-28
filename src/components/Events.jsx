@@ -58,8 +58,13 @@ export default function Events() {
               <strong>Location:</strong> {event.location}
             </p> 
             <p className="card-text">
-              <strong>We Need:</strong> {event.minPlayers} Players! <br/>
+              <strong>We Need Minimum:</strong> {event.minPlayers} Players! <br/>
               <strong>But No More Than:</strong>  {event.maxPlayers} Players!
+              
+            </p> 
+            <p className="card-text">
+              <strong>Current:</strong> {event.attendees.length} Players! <br/>
+              
               
             </p>
           </div>
