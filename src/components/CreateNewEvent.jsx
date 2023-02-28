@@ -83,6 +83,7 @@ export default function CreateNewEvent() {
             <option value="Tennis">Tennis</option>
             <option value="Padel">Padel</option>
             <option value="Spikeball">Spikeball</option>
+            <option value="Basket">Basket</option>
           </select>
         </div>
 
