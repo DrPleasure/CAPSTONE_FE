@@ -3,6 +3,8 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import Basketballimage from "../assets/basketball.jpg";
+import MyProfileHome from './MyProfileHome';
+import { Link } from 'react-router-dom';
 import "./Navbartop.css";
 
 export default function Navbartop() {
@@ -26,8 +28,11 @@ export default function Navbartop() {
               height="30"
               className="d-inline-block align-top NavbarLogo"
             />{' '}
-            React Bootstrap
+            Join / find players for sport events!
           </Navbar.Brand>
+          <Link to='/myprofile'>
+            <MyProfileHome/>
+          </Link>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>

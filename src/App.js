@@ -5,7 +5,10 @@ import Login from './components/Login'
 import Home from './components/Home';
 import Events from './components/Events';
 import Register from './components/Register';
+import SingleEvent from './components/SingleEvent';
+import MyProfile from './components/MyProfile';
 
+// add weather forecast??
 
 function App() {
   return (
@@ -14,6 +17,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route exact path="/events/:id" element={<SingleEvent/>} />
+        <Route exact path="/myprofile" element={<MyProfile/>} />
 
       </Routes>
     </Router>

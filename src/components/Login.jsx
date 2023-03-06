@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
+import axios from 'axios'
 import {
   MDBContainer,
   MDBInput,
@@ -29,31 +30,42 @@ const Login = () => {
     const details = {
       email: email,
       password: password,
-    }
-
+    };
+  
     const options = {
       method: 'POST',
       body: JSON.stringify(details),
       headers: {
         'Content-Type': 'application/json',
       },
-    }
-
-    const fetchURL = 'http://localhost:3001/users/login'
-
+    };
+  
+    const fetchURL = 'http://localhost:3001/users/login';
+  
     try {
-      let response = await fetch(fetchURL, options)
-
+      let response = await fetch(fetchURL, options);
+  
       if (response.ok) {
-        const data = await response.json()
-        console.log(response.status)
-        localStorage.setItem('accessToken', data.accessToken)
-        navigate('/')
+        const data = await response.json();
+        console.log(response.status);
+        localStorage.setItem('accessToken', data.accessToken);
+        
+        // Include the access token in subsequent requests
+        const config = {
+          headers: { Authorization: `Bearer ${data.accessToken}` }
+        };
+        const { data: user } = await axios.get("http://localhost:3001/users/me", config);
+        
+        console.log(user);
+        navigate('/');
       } else {
-        console.log(response.status)
+        console.log(response.status);
       }
-    } catch (error) {}
-  }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
 
   return (
     <MDBContainer className="p-3 my-5 d-flex flex-column w-25">

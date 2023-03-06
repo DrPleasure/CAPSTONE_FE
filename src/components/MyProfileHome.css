@@ -1,0 +1,9 @@
+.profile-avatar {
+    border-radius: 18%;
+    height: 36px;
+}
+
+.home-user-info {
+    left: 50%;
+    position: relative;
+}
