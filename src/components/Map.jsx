@@ -13,34 +13,61 @@ const center = {
 };
 
 export default function Map() {
-  const [locations, setLocations] = useState([]);
+  const [events, setEvents] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
-    const fetchLocations = async () => {
-      const { data } = await axios.get('http://localhost:3001/locations/map');
-      setLocations(data);
+    const fetchEvents = async () => {
+      const { data } = await axios.get('http://localhost:3001/events');
+      console.log(data);
+      setEvents(data);
     };
-    fetchLocations();
+    fetchEvents();
   }, []);
 
   const onMapLoad = (map) => {
-    // You can use the `map` object to customize the map, e.g. set the zoom level
+    console.log("Map loaded:", map);
     map.setZoom(13);
+  };
+
+  const handleMarkerClick = (event) => {
+    setSelectedEvent(event);
+  };
+
+  const handleInfoWindowClose = () => {
+    setSelectedEvent(null);
   };
 
   return (
     <div style={containerStyle}>
       <GoogleMap
+        apiKey={process.env.REACT_APP_GOOGLE_KEY}
         onLoad={onMapLoad}
         mapContainerStyle={containerStyle}
         center={center}
         zoom={13}
       >
-        {locations.map((location) => (
+        {events.map((event) => (
           <Marker
-            key={location._id}
-            position={{ lat: location.latitude, lng: location.longitude }}
-          />
+            key={event._id}
+            position={{ lat: event.latitude, lng: event.longitude }}
+            onClick={() => handleMarkerClick(event)}
+          >
+            {selectedEvent === event ? (
+              <InfoWindow
+                anchor={selectedEvent && selectedEvent.anchor}
+                onCloseClick={handleInfoWindowClose}
+              >
+                <div>
+                  <h3>{event.title}</h3>
+                  <p>{event.date}</p>
+                      <img src={selectedEvent.image} alt={selectedEvent.title} />
+
+                  <p>{event.description}</p>
+                </div>
+              </InfoWindow>
+            ) : null}
+          </Marker>
         ))}
       </GoogleMap>
     </div>

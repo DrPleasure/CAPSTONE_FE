@@ -18,7 +18,7 @@ export default function Events() {
 
   useEffect(() => {
     const fetchLocations = async () => {
-      const { data } = await axios.get("http://localhost:3001/locations/map");
+      const { data } = await axios.get("http://localhost:3001/events/locations/map");
       setLocations(data);
     };
     fetchLocations();
