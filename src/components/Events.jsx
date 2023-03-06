@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
 import Map from "./Map";
 import GoogleMapReact from 'google-map-react';
+import SingleEvent from "./SingleEvent"
 
 
 export default function Events() {
