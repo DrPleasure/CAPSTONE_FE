@@ -26,6 +26,7 @@ export default function Events() {
   }, []);
 
 
+
   useEffect(() => {
     const fetchEvents = async () => {
       const params = {};
@@ -232,7 +233,7 @@ export default function Events() {
         <Row xs={1} md={2} className="g-4">
           {filteredEvents.map((event) => (
 <Col key={event._id}>
-<Link to={`/events/${event._id}`}>
+<Link to={{ pathname: `/events/${event._id}`, state: { event } }}>
 <Card>
 <Card.Img variant="top" src={event.image} alt="eventimage" />
 <Card.Body>

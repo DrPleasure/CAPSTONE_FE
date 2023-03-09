@@ -7,19 +7,15 @@ const containerStyle = {
   height: '400px',
 };
 
-
-
-export default function Map() {
+export default function Map({ locations }) {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [searchLocation, setSearchLocation] = useState('');
   const [sortedEvents, setSortedEvents] = useState([]);
-
   const [center, setCenter] = useState({
     lat: 55.6761,
     lng: 12.5683,
   });
- 
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -29,7 +25,7 @@ export default function Map() {
       setSortedEvents(data);
     };
     fetchEvents();
-  }, []);
+  }, [locations]);
 
   const onMapLoad = (map) => {
     console.log("Map loaded:", map);
