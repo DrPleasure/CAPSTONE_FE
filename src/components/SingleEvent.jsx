@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import CommentSection from "./CommentSection";
 import { useParams } from "react-router-dom";
 import { FaFacebookMessenger } from "react-icons/fa";
 import {
@@ -17,12 +18,15 @@ import {
   MessengerIcon,
 } from "react-share";
 import { Button } from "react-bootstrap";
+import { MDBCardImage } from "mdb-react-ui-kit";
 
 export default function SingleEvent() {
   const [event, setEvent] = useState(null);
   const { id } = useParams();
   const [isAttending, setIsAttending] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [comment, setComment] = useState("");
+
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -40,7 +44,8 @@ export default function SingleEvent() {
       }
     };
     
-  
+
+
     const fetchUser = async () => {
       const accessToken = localStorage.getItem("accessToken");
       try {
@@ -116,6 +121,20 @@ export default function SingleEvent() {
   };
   
   
+  const handleCommentSubmit = async () => {
+    const accessToken = localStorage.getItem("accessToken");
+    try {
+      const { data } = await axios.post(
+        `http://localhost:3001/events/${id}/comments`,
+        { text: comment }, // include the comment text in the request body
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      );
+      setEvent((prevEvent) => ({ ...prevEvent, comments: data }));
+      setComment("");
+    } catch (error) {
+      console.error(error);
+    }
+  };
   
   
   
@@ -136,6 +155,9 @@ export default function SingleEvent() {
       <div className="d-flex justify-content-center">
         <div className="col-md-6">
           <img src={event.image} alt="eventimage" width={400} />
+          <Button onClick={handleAttendEvent}>
+        {isAttending ? "Unattend Event" : "Attend Event"}
+      </Button>
         </div>
         <div className="col-md-6">
           <p>
@@ -155,30 +177,43 @@ export default function SingleEvent() {
           </p>
         </div>
       </div>
-      <Button onClick={handleAttendEvent}>
-        {isAttending ? "Unattend Event" : "Attend Event"}
-      </Button>
+      
       <div className="attendees d-flex justify-content-between">
+        <div className="creator-info">
+          <h2>I made this event</h2>
+        </div>
+        <div className="comments">
+        <CommentSection
+  comments={event.comments}
+  handleCommentSubmit={handleCommentSubmit}
+  comment={comment}
+  setComment={setComment}
+  eventId={event._id}
+  setEvent={setEvent} // add setEvent prop here
+
+/>
+
+        </div>
         <div className="attending">
-          attending: {event.attendees.length}{" "}
+     
+          Attending: {event.attendees.length}{" "}
           {event.attendees.map((attendee) => (
             <div key={attendee._id}>
-              <img src={attendee.avatar} width={100} />
+              <MDBCardImage
+                        className="rounded-circle shadow-1-strong me-3"
+                        src={attendee.avatar}
+                        alt="avatar"
+                        width="45"
+                        height="45"
+                      />
               <span>{attendee.firstName}</span>
             </div>
           ))}
         </div>
-        <div className="comments">
-          comments:
-          {event.comments.map((comment) => (
-            <div key={comment._id}>
-              <div className="d-flex">
-                <p>{comment.text}</p>
-                <img src={comment.user.avatar} width={100} />
-              </div>
-            </div>
-          ))}
-        </div>
+   
+     
+
+        
       </div>
       <div className="d-flex justify-content-center">
         <div className="col-md-6">

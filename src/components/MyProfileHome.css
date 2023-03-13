@@ -6,4 +6,7 @@
 .home-user-info {
     left: 50%;
     position: relative;
+    display: flex;
+
 }
+

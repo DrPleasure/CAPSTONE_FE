@@ -19,9 +19,9 @@ export default function MyProfileHome() {
   }, []);
 
   return (
-    <div className='home-user-info'>
-        {user.firstName}
-        <img src={user.avatar} className="profile-avatar"></img>
+    <div className='home-user-info d-flex'>
+        {user.firstName} {user.lastName} 
+        <img src={user.avatar} className="profile-avatar" ></img>
     </div>
   );
 }

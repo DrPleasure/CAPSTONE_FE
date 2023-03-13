@@ -28,7 +28,7 @@ export default function Navbartop() {
               height="30"
               className="d-inline-block align-top NavbarLogo"
             />{' '}
-            Join / find players for sport events!
+          
           </Navbar.Brand>
           <Link to='/myprofile'>
             <MyProfileHome/>
