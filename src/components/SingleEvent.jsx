@@ -18,7 +18,8 @@ import {
   MessengerIcon,
 } from "react-share";
 import { Button } from "react-bootstrap";
-import { MDBCardImage } from "mdb-react-ui-kit";
+import { MDBCardImage, MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBBtn, MDBTypography, MDBIcon } from "mdb-react-ui-kit";
+import "./SingleEvent.css"
 
 export default function SingleEvent() {
   const [event, setEvent] = useState(null);
@@ -154,8 +155,8 @@ export default function SingleEvent() {
       <h1 className="text-center">{event.title}</h1>
       <div className="d-flex justify-content-center">
         <div className="col-md-6">
-          <img src={event.image} alt="eventimage" width={400} />
-          <Button onClick={handleAttendEvent}>
+          <img src={event.image} alt="eventimage" width={400} className="" />
+          <Button onClick={handleAttendEvent} id="attend-button">
         {isAttending ? "Unattend Event" : "Attend Event"}
       </Button>
         </div>
@@ -180,7 +181,47 @@ export default function SingleEvent() {
       
       <div className="attendees d-flex justify-content-between">
         <div className="creator-info">
-          <h2>I made this event</h2>
+        <div  style={{ backgroundColor: '#eee' }}>
+          <h2>Event Creator</h2>
+      <MDBContainer className="container py-2">
+        <MDBRow className="justify-content-center align-items-center">
+          <MDBCol xl={10}>
+            <MDBCard style={{ borderRadius: '15px' }}>
+              <MDBCardBody className="text-center">
+                <div className="mt-3 mb-4">
+                  <MDBCardImage src={event.createdBy.avatar}
+                    className="rounded-circle" fluid style={{ width: '100px' }} />
+                </div>
+                <MDBTypography tag="h4">{event.createdBy.firstName} {" "} {event.createdBy.lastName}</MDBTypography>
+                <MDBCardText className="text-muted mb-4">
+                  Spikeball & Basket 
+                </MDBCardText>
+                <div className="mb-4 pb-2">
+                <FacebookIcon size={32} round={true} />
+
+                <TwitterIcon size={32} round={true} />
+
+                <WhatsappIcon size={32} round={true} />
+
+                </div>
+              
+                <div className="d-flex justify-content-between text-center mt-5 mb-2">
+                  <div>
+                    <MDBCardText className="mb-1 h5">13</MDBCardText>
+                    <MDBCardText className="small text-muted mb-0">Events Created</MDBCardText>
+                  </div>
+                  <div className="px-3">
+                    <MDBCardText className="mb-1 h5">27</MDBCardText>
+                    <MDBCardText className="small text-muted mb-0">Events Attended</MDBCardText>
+                  </div>
+                 
+                </div>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
+    </div>
         </div>
         <div className="comments">
         <CommentSection
