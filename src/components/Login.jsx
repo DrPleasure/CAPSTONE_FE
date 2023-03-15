@@ -32,30 +32,36 @@ const Login = () => {
       password: password,
     };
   
+    console.log('Login details:', details); // Log the login details
+  
     const options = {
       method: 'POST',
       body: JSON.stringify(details),
-      headers: {
+      headers: new Headers({
         'Content-Type': 'application/json',
-      },
+      }),
     };
   
     const fetchURL = 'http://localhost:3001/users/login';
   
     try {
       let response = await fetch(fetchURL, options);
+      console.log('Response:', response); // Log the response object
   
       if (response.ok) {
         const data = await response.json();
-        console.log(response.status);
+        console.log('Response data:', data); // Log the response data
         localStorage.setItem('accessToken', data.accessToken);
-        
+  
         // Include the access token in subsequent requests
         const config = {
-          headers: { Authorization: `Bearer ${data.accessToken}` }
+          headers: { Authorization: `Bearer ${data.accessToken}` },
         };
-        const { data: user } = await axios.get("http://localhost:3001/users/me", config);
-        
+        const { data: user } = await axios.get(
+          'http://localhost:3001/users/me',
+          config
+        );
+  
         console.log(user);
         navigate('/');
       } else {
@@ -65,6 +71,8 @@ const Login = () => {
       console.error(error);
     }
   };
+  
+  
   
 
   return (

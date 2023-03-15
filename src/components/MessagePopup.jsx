@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 
-export default function MessagePopup({ show, onHide, recipientEmail, senderEmail }) {
+export default function MessagePopup({ show, onHide, recipientEmail, senderEmail, eventName }) {
   const [message, setMessage] = useState("");
   const [showAlert, setShowAlert] = useState(false);
 
@@ -13,7 +13,7 @@ export default function MessagePopup({ show, onHide, recipientEmail, senderEmail
     const msg = {
       to: recipientEmail,
       from: senderEmail,
-      subject: "New message from an event attendee",
+      subject: `${eventName}`,
       text: message,
       html: `<p>${message}</p>`,
     };

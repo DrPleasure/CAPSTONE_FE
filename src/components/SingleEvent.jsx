@@ -161,7 +161,8 @@ export default function SingleEvent() {
     return <div>Loading...</div>;
   }
 
-  const shareUrl = `https://your-domain.com/events/${id}`;
+  // const shareUrl = `http://localhost:3000/events/${id}`;
+  const shareUrl = `https://vercel.com/drpleasure/ai-image-generator`;
   const title = event.title;
 
 // ... (imports and other parts of the code)
@@ -276,6 +277,7 @@ return (
                         onHide={handleCloseMessagePopup}
                         recipientEmail={event.createdBy.email}
                         senderEmail={userEmail}
+                        eventName={event.title}
                       />
                     </div>
 
