@@ -5,11 +5,19 @@ import moment from "moment";
 import Avatar from "react-avatar";
 import axios from "axios";
 import { MDBCardImage } from "mdb-react-ui-kit";
+import jwt_decode from "jwt-decode";
+
+import "./CommentSection.css"; 
+
 
 export default function CommentSection({ eventId, comments, setEvent }) {
   const [newComment, setNewComment] = useState("");
   const [reply, setReply] = useState("");
   const [parentComment, setParentComment] = useState("");
+
+  const accessToken = localStorage.getItem("accessToken");
+  const decodedToken = jwt_decode(accessToken);
+  const loggedInUserId = decodedToken._id;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,26 +39,27 @@ export default function CommentSection({ eventId, comments, setEvent }) {
     setNewComment(event.target.value);
   };
 
-  const renderComment = (comment) => {
-    const childComments = comments.filter(
-      (c) => c.parentComment === comment._id
-    );
+  const renderComment = (comment, level = 0) => {
+    const childComments = comment.childComments;
+
+    const isCurrentUser = comment.user._id === loggedInUserId;
+    const commentClass = isCurrentUser ? "current-user-comment" : "";
+
     return (
-      <div key={comment._id}>
+      <div key={comment._id} style={{ marginLeft: level * 20 }} >
         <div className="d-flex flex-start">
-        <MDBCardImage
-                        className="rounded-circle shadow-1-strong me-3"
-                        src={comment.user.avatar}
-                        alt="avatar"
-                        width="65"
-                        height="65"
-                      />
+          <MDBCardImage
+            className="rounded-circle shadow-1-strong me-3"
+            src={comment.user.avatar}
+            alt="avatar"
+            width="65"
+            height="65"
+          />
           <div className="flex-grow-1 flex-shrink-1">
             <div>
               <div className="d-flex justify-content-between align-items-center">
-                <p className="mb-1">
+                <p className={commentClass}>
                   {comment.user.firstName} {comment.user.lastName}{" "}
-                 
                 </p>
                 <a href="#!" onClick={() => setParentComment(comment._id)}>
                   <FaPaperPlane className="me-2" />
@@ -76,7 +85,9 @@ export default function CommentSection({ eventId, comments, setEvent }) {
                 </Button>
               </Form>
             )}
-            {childComments.map((childComment) => renderComment(childComment))}
+            {childComments.map((childComment) =>
+              renderComment(childComment, level + 1)
+            )}
           </div>
         </div>
       </div>
@@ -89,7 +100,7 @@ export default function CommentSection({ eventId, comments, setEvent }) {
     try {
       const { data } = await axios.post(
         `http://localhost:3001/events/${eventId}/comments`,
-        { comment: reply, parentCommentId },
+        { comment: reply, parentCommentId }, // Add parentCommentId here
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
       setEvent((prevEvent) => ({ ...prevEvent, comments: data }));
@@ -102,24 +113,24 @@ export default function CommentSection({ eventId, comments, setEvent }) {
 
   return (
     <div className="comments">
-  <h2>Comments</h2>
-  {comments
-    .filter((comment) => !comment.parentComment)
-    .map((comment) => renderComment(comment))}
-  <Form onSubmit={handleSubmit}>
-    <Form.Group controlId="new-comment">
-      <Form.Control
-        as="textarea"
-        rows={3}
-        placeholder="Write a comment..."
-        value={newComment}
-        onChange={handleCommentChange}
-      />
-    </Form.Group>
-    <Button type="submit">
-      <FaPaperPlane /> Comment
-    </Button>
-  </Form>
-</div>
-);
+      <h2>Comments</h2>
+      {comments
+        .filter((comment) => !comment.parentComment)
+        .map((comment) => renderComment(comment))}
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="new-comment">
+          <Form.Control
+            as="textarea"
+            rows={3}
+            placeholder="Write a comment..."
+            value={newComment}
+            onChange={handleCommentChange}
+          />
+        </Form.Group>
+        <Button type="submit">
+          <FaPaperPlane /> Comment
+        </Button>
+      </Form>
+    </div>
+  );
 }

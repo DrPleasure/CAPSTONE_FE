@@ -31,13 +31,14 @@ export default function MyProfile() {
             <MDBRow className="justify-content-center align-items-center h-100">
               <MDBCol lg="9" xl="7">
                 <MDBCard>
-                  <div className="rounded-top text-white d-flex flex-row" style={{ backgroundColor: '#000', height: '200px' }}>
-                    <div className="ms-4 mt-5 d-flex flex-column" style={{ width: '150px' }}>
+                  <div className="rounded-top text-white d-flex flex-row" style={{ backgroundColor: '#9c2780', height: '200px' }}>
+                    <div className="ms-3 mt-1 d-flex flex-column" style={{ width: '150px' }}>
                       <MDBCardImage src={user.avatar}
                         alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail" fluid style={{ width: '150px', zIndex: '1' }} />
-                      <MDBBtn
-    outline
-    color="light"
+
+                      <MDBBtn rounded
+   
+    color="success"
     style={{ height: '36px', overflow: 'visible' }}
     onClick={() => setShowEditProfilePopup(true)}
   >
@@ -50,7 +51,7 @@ export default function MyProfile() {
     setUser={setUser}
   />
                     </div>
-                    <div className="ms-3" style={{ marginTop: '130px' }}>
+                    <div className="ms-3 mt-4">
                       <MDBTypography tag="h5">{user.firstName} {user.lastName}</MDBTypography>
                       <MDBCardText>{user.city}</MDBCardText>
                     </div>

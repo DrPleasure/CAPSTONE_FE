@@ -82,6 +82,19 @@ export default function Map({ locations }) {
     return deg * (Math.PI / 180);
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const formattedDate = new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZoneName: "short",
+    }).format(date);
+    return formattedDate;
+  };
+
   return (
     <>
       <div>
@@ -113,7 +126,7 @@ export default function Map({ locations }) {
                   <div>
                     <h3>{event.title}</h3>
                     <h5>{event.category}</h5>
-                    <p>{event.date}</p>
+                    <p>{formatDate(event.date)}</p>
                     {event.image && (
                       <img src={event.image} alt={event.title} style={{ maxWidth: '200px' }} />
                     )}
