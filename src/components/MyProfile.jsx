@@ -1,12 +1,16 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import EditProfilePopup from './EditProfilePopup';
+
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography } from 'mdb-react-ui-kit';
 import "./MyProfile.css"
 
 
 export default function MyProfile() {
     const [user, setUser] = useState({});
+    const [showEditProfilePopup, setShowEditProfilePopup] = useState(false);
+
 
     useEffect(() => {
       const accessToken = localStorage.getItem('accessToken');
@@ -31,9 +35,20 @@ export default function MyProfile() {
                     <div className="ms-4 mt-5 d-flex flex-column" style={{ width: '150px' }}>
                       <MDBCardImage src={user.avatar}
                         alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail" fluid style={{ width: '150px', zIndex: '1' }} />
-                      <MDBBtn outline color="dark" style={{height: '36px', overflow: 'visible'}}>
-                        Edit profile
-                      </MDBBtn>
+                      <MDBBtn
+    outline
+    color="light"
+    style={{ height: '36px', overflow: 'visible' }}
+    onClick={() => setShowEditProfilePopup(true)}
+  >
+    Edit profile
+  </MDBBtn>
+  <EditProfilePopup
+    show={showEditProfilePopup}
+    onHide={() => setShowEditProfilePopup(false)}
+    user={user}
+    setUser={setUser}
+  />
                     </div>
                     <div className="ms-3" style={{ marginTop: '130px' }}>
                       <MDBTypography tag="h5">{user.firstName} {user.lastName}</MDBTypography>
@@ -50,10 +65,7 @@ export default function MyProfile() {
                         <MDBCardText className="mb-1 h5">1026</MDBCardText>
                         <MDBCardText className="small text-muted mb-0">Events Attended</MDBCardText>
                       </div>
-                      <div>
-                        <MDBCardText className="mb-1 h5">478</MDBCardText>
-                        <MDBCardText className="small text-muted mb-0">Recommendations</MDBCardText>
-                      </div>
+                    
                     </div>
                   </div>
                   <MDBCardBody className="text-black p-4">

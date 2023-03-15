@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CommentSection from "./CommentSection";
+import MessagePopup from "./MessagePopup";
 import { useParams } from "react-router-dom";
 import { FaFacebookMessenger } from "react-icons/fa";
 import {
@@ -26,8 +27,20 @@ export default function SingleEvent() {
   const { id } = useParams();
   const [isAttending, setIsAttending] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [userEmail, setUserEmail] = useState(null);
   const [comment, setComment] = useState("");
+  const [showMessagePopup, setShowMessagePopup] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
+
+
+  const handleShowMessagePopup = () => {
+    setShowMessagePopup(true);
+  };
+  
+  const handleCloseMessagePopup = () => {
+    setShowMessagePopup(false);
+  };
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -54,6 +67,7 @@ export default function SingleEvent() {
           headers: { Authorization: `Bearer ${accessToken}` },
         });
         setUserId(data._id);
+        setUserEmail(data.email);
       } catch (error) {
         console.error(error);
       }
@@ -197,13 +211,17 @@ export default function SingleEvent() {
                   Spikeball & Basket 
                 </MDBCardText>
                 <div className="mb-4 pb-2">
-                <FacebookIcon size={32} round={true} />
+  <Button variant="primary" onClick={handleShowMessagePopup}>
+    Message Me
+  </Button>
+  <MessagePopup
+    show={showMessagePopup}
+    onHide={handleCloseMessagePopup}
+    recipientEmail={event.createdBy.email}
+    senderEmail={userEmail}
+  />
+</div>
 
-                <TwitterIcon size={32} round={true} />
-
-                <WhatsappIcon size={32} round={true} />
-
-                </div>
               
                 <div className="d-flex justify-content-between text-center mt-5 mb-2">
                   <div>
