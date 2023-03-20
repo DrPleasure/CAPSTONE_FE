@@ -31,7 +31,13 @@ export default function SingleEvent() {
   const [comment, setComment] = useState("");
   const [showMessagePopup, setShowMessagePopup] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const [reminderSet, setReminderSet] = useState(false);
 
+
+const handleReminderChange = async (e) => {
+  setReminderSet(e.target.checked);
+  // Call your backend API to store the user's reminder preference
+};
 
 
   const handleShowMessagePopup = () => {
@@ -230,7 +236,7 @@ return (
     </MDBRow>
 
 <div className="d-flex">
-    <div className="event-info mt-5 col-6">
+    <div className="event-info mt-5 col-8">
       <h2>Event Information</h2>
       <p>Lets play <strong>{event.category}!</strong></p>
       <p>{event.description}</p>
@@ -240,6 +246,17 @@ return (
       <p>
       <strong>Date & Time:</strong> {formatDate(event.date)}
       </p>
+      <label htmlFor="reminder-checkbox" className="form-check-label">
+  Set Reminder
+</label>
+<input
+  type="checkbox"
+  id="reminder-checkbox"
+  checked={reminderSet}
+  onChange={handleReminderChange}
+  className="form-check-input"
+/>
+
       <Button onClick={handleAttendEvent} id="attend-button">
             {isAttending ? "Unattend Event" : "Attend Event"}
           </Button>
