@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
+import "./Map.css"
 
 const containerStyle = {
   width: '100%',
   height: '400px',
 };
 
-export default function Map({ locations }) {
+export default function Map({ locations, setFilteredEvents, props }) {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [searchLocation, setSearchLocation] = useState('');
@@ -56,7 +57,7 @@ export default function Map({ locations }) {
   })
   .sort((a, b) => a.distance - b.distance);
 
-      setSortedEvents(sorted);
+setFilteredEvents(sorted);
     } else {
       console.log('No results found.');
     }
@@ -98,11 +99,11 @@ export default function Map({ locations }) {
   return (
     <>
       <div>
-        <label>
+        <label className='fs-5'>
           Calculate Distances to Events from:
-          <input type="text" value={searchLocation} onChange={(e) => setSearchLocation(e.target.value)} />
+          <input type="text" className='mx-3' value={searchLocation} onChange={(e) => setSearchLocation(e.target.value)} />
         </label>
-        <button onClick={handleSearchLocation}>Search</button>
+        <button onClick={handleSearchLocation} id="buttonsearch">Search</button>
       </div>
       <div style={containerStyle}>
         <GoogleMap
@@ -139,24 +140,7 @@ export default function Map({ locations }) {
           ))}
         </GoogleMap>
       </div>
-      <div>
-        <h2>Events</h2>
-        <ul>
-          {sortedEvents.map((event) => (
-            <li key={event._id}>
-              <h3>{event.title}</h3>
-              <h5>{event.category}</h5>
-              <p>{event.location}</p>
-              <p>{event.date}</p>
-              {event.image && (
-                <img src={event.image} alt={event.title} style={{ maxWidth: '200px' }} />
-              )}
-              <p>{event.description}</p>
-              <p>Distance: {event.distance} km</p>
-            </li>
-          ))}
-        </ul>
-      </div>
+   
     </>
   );
               }  

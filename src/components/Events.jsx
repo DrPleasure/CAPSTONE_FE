@@ -8,14 +8,20 @@ import { Link } from "react-router-dom";
 import Map from "./Map";
 import GoogleMapReact from 'google-map-react';
 import SingleEvent from "./SingleEvent"
+import Dropdown from 'react-bootstrap/Dropdown';
+import "./Events.css"
+
 
 
 export default function Events() {
+  const [eventDistances, setEventDistances] = useState([]);
   const [events, setEvents] = useState([]);
   const [showCreateNewEvent, setShowCreateNewEvent] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedDays, setSelectedDays] = useState([]);
   const [locations, setLocations] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+
 
   useEffect(() => {
     const fetchLocations = async () => {
@@ -85,7 +91,12 @@ export default function Events() {
     }
   };
 
-  const filteredEvents = events.filter((event) => {
+  const eventsWithDistances = events.map(event => {
+    const eventDistance = eventDistances.find(dist => dist._id === event._id);
+    return eventDistance ? { ...event, distance: eventDistance.distance } : event;
+  });
+
+  const filteredEvents = eventsWithDistances.filter((event) => {
     if (selectedCategories.length === 0 && selectedDays.length === 0) {
       return true;
     }
@@ -107,153 +118,86 @@ export default function Events() {
 
   return (
     <>
-      <div className="container mt-3">
+      <div className="container mt-3" id="events">
       <div>
       <h1>Locations</h1>
-      <Map locations={locations} />
+      <Map locations={filteredEvents} setFilteredEvents={setEvents} />
     </div>
         <h1 className="text-center">Upcoming Events</h1>
-        <button onClick={handleCreateNewEventClick}>Create New Event</button>
+        <button onClick={handleCreateNewEventClick} id="buttoncreate">Create Event</button>
         {showCreateNewEvent && <CreateNewEvent />}
         <div className="d-flex justify-content-center">
-          <div className="btn-group me-2" role="group">
-            <button
-              type="button"
-              className={`btn btn-outline-secondary ${
-                selectedCategories.length === 0 ? "active" : ""
-              }`}
-              onClick={() => setSelectedCategories([])}
+    <div>
+      <Dropdown show={showDropdown} onClick={() => setShowDropdown(!showDropdown)}>
+        <Dropdown.Toggle variant="outline-secondary">
+          Filter
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          <Dropdown.Header>Category</Dropdown.Header>
+          <Dropdown.Item
+            onClick={() => setSelectedCategories([])}
+            className={selectedCategories.length === 0 ? "active-filter" : ""}
+          >
+            All Categories
+          </Dropdown.Item>
+          {["Football", "Badminton", "Tennis", "Padel", "Spikeball", "Basket"].map(category => (
+            <Dropdown.Item
+              key={category}
+              name={category}
+              onClick={(e) => { e.stopPropagation(); handleCategoryFilterChange(e); }}
+              className={selectedCategories.includes(category) ? "active-filter" : ""}
             >
-              All Categories
-            </button>
-            <button
-              type="button"
-              className={`btn btn-outline-secondary ${
-                selectedCategories.includes("Football") ? "active" : ""
-              }`}
-              name="Football"
-              onClick={handleCategoryFilterChange}
+              {category}
+            </Dropdown.Item>
+          ))}
+          <Dropdown.Divider />
+          <Dropdown.Header>Time</Dropdown.Header>
+          {["Today", "Tomorrow", "This Week", "Next Week"].map(time => (
+            <Dropdown.Item
+              key={time}
+              name={time}
+              onClick={(e) => { e.stopPropagation(); handleDayFilterChange(e); }}
+              className={selectedDays.includes(time) ? "active-filter" : ""}
             >
-              Football
-            </button>
-            <button
-              type="button"
-              className={`btn btn-outline-secondary ${
-                selectedCategories.includes("Badminton") ? "active" : ""
-              }`}
-              name="Badminton"
-              onClick={handleCategoryFilterChange}
-            >
-              Badminton
-            </button>
-            <button
-              type="button"
-              className={`btn btn-outline-secondary ${
-                selectedCategories.includes("Tennis") ? "active" : ""
-              }`}
-              name="Tennis"
-              onClick={handleCategoryFilterChange}
-            >
-              Tennis
-            </button>
-            <button
-              type="button"
-              className={`btn btn-outline-secondary ${
-                selectedCategories.includes("Padel") ? "active" : ""
-              }`}
-              name="Padel"
-              onClick={handleCategoryFilterChange}
-            >
-              Padel
-            </button>
-            <button
-              type="button"
-              className={`btn btn-outline-secondary ${
-                selectedCategories.includes("Spikeball") ? "active" : ""
-              }`}
-              name="Spikeball"
-              onClick={handleCategoryFilterChange}
-            >
-              Spikeball
-            </button>
-            <button
-              type="button"
-              className={`btn btn-outline-secondary ${
-                selectedCategories.includes("Basket") ? "active" : ""
-              }`}
-              name="Basket"
-              onClick={handleCategoryFilterChange}
-            >
-              Basket
-            </button>
-          </div>
-          <div className="col-md-6">
-            <button
-              type="button"
-              className={`btn btn-outline-secondary ${
-                selectedDays.includes("Today") ? "active" : ""
-              }`}
-              name="Today"
-              onClick={handleDayFilterChange}
-            >
-              Today
-            </button>
-            <button
-              type="button"
-              className={`btn btn-outline-secondary ${
-                selectedDays.includes("Tomorrow") ? "active" : ""
-              }`}
-              name="Tomorrow"
-              onClick={handleDayFilterChange}
-            >
-              Tomorrow
-            </button>
-            <button
-              type="button"
-              className={`btn btn-outline-secondary ${
-                selectedDays.includes("This Week") ? "active" : ""
-              }`}
-              name="This Week"
-              onClick={handleDayFilterChange}
-            >
-              This Week
-            </button>
-            <button
-              type="button"
-              className={`btn btn-outline-secondary ${
-                selectedDays.includes("Next Week") ? "active" : ""
-              }`}
-              name="Next Week"
-              onClick={handleDayFilterChange}
-            >
-              Next Week
-            </button>
-          </div>
-        </div>
+              {time}
+            </Dropdown.Item>
+          ))}
+        </Dropdown.Menu>
+      </Dropdown>
+    </div>
+  </div>
         <Row xs={1} md={2} className="g-4">
-          {filteredEvents.map((event) => (
-<Col key={event._id}>
-<Link to={{ pathname: `/events/${event._id}`, state: { event } }}>
-<Card>
-<Card.Img variant="top" src={event.image} alt="eventimage" />
-<Card.Body>
-<Card.Title>{event.title}</Card.Title>
-<Card.Text>
-<strong>Category:</strong> {event.category}
-</Card.Text>
-<Card.Text>
-<strong>Description:</strong> {event.description}
-</Card.Text>
-<Card.Text>
-<strong>Date:</strong> {formatDate(event.date)}
-</Card.Text>
-</Card.Body>
-</Card>
-</Link>
-</Col>
-))}
-</Row>
-</div>
-</>
-);
+        {filteredEvents.map((event) => (
+            <Col key={event._id}>
+              <Link to={{ pathname: `/events/${event._id}`, state: { event } }}>
+                <Card>
+                  <Card.Img variant="top" src={event.image} alt="eventimage" />
+                  <Card.Body>
+                    <Card.Title>{event.title}</Card.Title>
+                    <Card.Text>
+                      <strong>Category:</strong> {event.category}
+                    </Card.Text> 
+                    <Card.Text>
+                      <strong>Location:</strong> {event.location}
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>Description:</strong> {event.description}
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>Date:</strong> {formatDate(event.date)}
+                    </Card.Text>
+                    
+                      <Card.Text>
+                        <strong>Distance:</strong> {event.distance} km
+                      </Card.Text>
+                    
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+          ))}
+        </Row>
+      </div>
+    </>
+  );
 }

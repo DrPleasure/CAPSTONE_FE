@@ -1,16 +1,31 @@
+#eventform {
+  background-color: var(--black);
+  color: var(--yellow)
+}
+
 .form-container {
     max-width: 600px;
     margin: 0 auto;
+    background-color: var(--black);
+  }
+
+  form {
+    font-weight:700
+  }
+
+  .form-control {
+    opacity: 0.9
   }
   
   .form-input {
     display: block;
-    width: 100%;
+    width: 80%;
     padding: 10px;
     border: none;
     border-radius: 5px;
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 18px;
+  
   }
   
   .form-select {
@@ -24,20 +39,16 @@
   }
   
   .form-label {
-    font-size: 18px;
+    font-size: 22px;
     margin-bottom: 10px;
     display: block;
     font-weight: bold;
   }
-  
-  .form-button {
-    background-color: #1a1a1a;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+
+
+  #buttoner {
+    color: var(--yellow);
+    border: 1px solid var(--yellow);
   }
   
   .form-button:hover {

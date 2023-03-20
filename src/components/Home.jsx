@@ -4,7 +4,7 @@ import Events from "./Events";
 import Footer from "./Footer";
 import Navbartop from "./Navbartop";
 import Balls from "./Balls";
-import Jumbotron from "./Jumbotron";
+import Jumbotroner from "./Jumbotroner";
 import "./Home.css";
 
 const ballImages = require.context("../assets", false, /\.(jpg|png)$/);
@@ -110,10 +110,7 @@ const Home = () => {
     );
   }
 
-  if (!localStorage.getItem("accessToken")) {
-    navigate("/login");
-    return null;
-  }
+ 
 
   return (
     <>
@@ -121,7 +118,7 @@ const Home = () => {
         <Navbartop />
       </div>
       <div>
-        <Jumbotron />
+        <Jumbotroner />
       </div>
       {showHome && (
         <div className="mainContainer d-flex justify-content-center">
@@ -135,7 +132,7 @@ const Home = () => {
         })}
       </div>
       {showHome && (
-        <div className="sticky-footer">
+        <div >
           <Footer />
         </div>
       )}

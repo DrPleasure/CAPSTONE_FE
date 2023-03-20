@@ -36,7 +36,6 @@ export default function CreateNewEvent() {
         alert('Event created successfully!');
          // Navigate to home page and scroll to bottom
          navigate('/');
-         window.scrollTo(0, document.body.scrollHeight);
 
          // Fetch events to get newly created event
          const response = await axios.get('http://localhost:3001/events');
@@ -50,9 +49,9 @@ export default function CreateNewEvent() {
      };
 
   return (
-    <div className="container mt-3">
+    <div className="container mt-3" id='eventform'>
         
-      <h2>Create New Event</h2>
+      <h2 className='fs-2 fw-bold'>Create New Event</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="title">Title</label>
@@ -162,7 +161,7 @@ export default function CreateNewEvent() {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button  className="btn  my-2 fw-bolder" id='buttoner'>
       Create Event
     </button>
   </form>

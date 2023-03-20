@@ -1,0 +1,10 @@
+label {
+    color: var(--yellow)
+
+}
+
+#buttonsearch {
+    background-color: var(--black);
+    color: var(--yellow);
+    border: 1px solid var(--yellow)
+}

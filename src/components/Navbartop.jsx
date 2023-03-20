@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { FaSun, FaMoon } from 'react-icons/fa';
-import Basketballimage from "../assets/basketball.jpg";
+import image from "../assets/logo.png";
 import MyProfileHome from './MyProfileHome';
 import { Link } from 'react-router-dom';
 import "./Navbartop.css";
@@ -17,33 +17,29 @@ export default function Navbartop() {
   };
 
   return (
-    <div>
+    <div id='navbro'>
       <Navbar bg={darkMode ? 'dark' : 'light'} variant={darkMode ? 'dark' : 'light'}>
-        <Container>
-          <Navbar.Brand href="#home">
+        <Container className='d-flex justify-content-between'>
+          <Navbar.Brand href="/">
             <img 
               alt=""
-              src={Basketballimage}
-              width="30"
-              height="30"
+              src={image}
+              width="40"
+              height="40"
               className="d-inline-block align-top NavbarLogo"
             />{' '}
-          
           </Navbar.Brand>
           <Link to='/myprofile'>
             <MyProfileHome/>
           </Link>
-          <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
-            <Navbar.Text>
-              <label className="switch">
-                <input type="checkbox" checked={darkMode} onChange={handleDarkModeToggle} />
-                <span className="slider round" style={{ '--dot-color': darkMode ? '#fff' : '#343a40' }}>
-                  <span className="icon">{darkMode ? <FaMoon /> : <FaSun />}</span>
-                </span>
-              </label>
-            </Navbar.Text>
-          </Navbar.Collapse>
+          <button
+            type="button"
+            className="btn btn-link"
+            onClick={handleDarkModeToggle}
+            style={{ color: darkMode ? "white" : "black" }}
+          >
+            {darkMode ? <FaSun /> : <FaMoon />}
+          </button>
         </Container>
       </Navbar>
     </div>
