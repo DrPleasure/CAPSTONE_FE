@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CommentSection from "./CommentSection";
 import MessagePopup from "./MessagePopup";
+import EditEventModal from './EditEventModal';
+
+import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import { FaFacebookMessenger } from "react-icons/fa";
 import {
@@ -32,7 +35,31 @@ export default function SingleEvent() {
   const [showMessagePopup, setShowMessagePopup] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [reminderSet, setReminderSet] = useState(false);
+  const [isEditModalVisible, setIsEditModalVisible] = useState(false);
 
+
+  const navigate = useNavigate();
+
+
+  const handleDeleteEvent = async (id) => {
+    const confirmation = window.confirm("Are you sure you want to delete this event?");
+    
+    if (confirmation) {
+      try {
+        await axios.delete(`/events/${id}`);
+        alert("Event deleted successfully");
+        // Navigate to another page, for example, the events listing page
+        navigate('/events');
+      } catch (error) {
+        console.error("Error deleting event:", error);
+        alert("Error deleting event");
+      }
+    }
+  };
+  
+  const handleEventUpdated = (updatedEvent) => {
+    // Do something with the updated event, e.g., update state or re-fetch data
+  };
 
 const handleReminderChange = async (e) => {
   setReminderSet(e.target.checked);
@@ -64,9 +91,9 @@ const handleReminderChange = async (e) => {
       }
     };
     
+ 
 
-
-    const fetchUser = async () => {
+    async function fetchUser() {
       const accessToken = localStorage.getItem("accessToken");
       try {
         const { data } = await axios.get(`http://localhost:3001/users/me`, {
@@ -77,7 +104,7 @@ const handleReminderChange = async (e) => {
       } catch (error) {
         console.error(error);
       }
-    };
+    }
   
     fetchEvent();
     fetchUser();
@@ -174,12 +201,144 @@ const handleReminderChange = async (e) => {
 // ... (imports and other parts of the code)
 
 return (
-  <div className="container mt-3">
-    <h1 className="text-center">{event.title}</h1>
-    <MDBRow className="justify-content-between">
-      <MDBCol className="d-flex justify-content-center align-items-start">
-        <div className="col-md-1">
-          <p>Share this Event!</p>
+  <div className="container mt-3" id="content">
+    
+    <MDBRow className="d-flex">
+     
+      <MDBCol>
+        <div className="col-7">
+          <img src={event.image} alt="eventimage" width={600} className="my-3" id="eventimage" />
+         
+        </div>
+      </MDBCol>
+      <MDBCol>
+  <div className="attendees-section col-2">
+    <h2 className="text-center mb-4 fw-bold">Attendees ({event.attendees.length})</h2>
+    <div className="d-flex justify-content-center flex-wrap">
+      {event.attendees.map((attendee) => (
+        <div key={attendee._id} className="attendee-card p-2  d-flex ">
+          <MDBCardImage
+            className="rounded-circle shadow-1-strong mb-2"
+            src={attendee.avatar}
+            alt="avatar"
+            width="60"
+            height="60"
+          />
+          <span className="d-block">{attendee.firstName}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</MDBCol>
+
+       <div className="col-3">
+  <h2 className="text-center mb-4">Event Creator</h2>
+  <MDBContainer className="container py-2 event-creator">
+    <MDBRow className="justify-content-center align-items-center">
+      <MDBCol xl={10}>
+        <MDBCard className="creator-card" style={{ borderRadius: "15px" }}>
+          <MDBCardBody className="text-center">
+            <div className="mt-3 mb-4">
+              <MDBCardImage
+                src={event.createdBy.avatar}
+                className="rounded-circle"
+                fluid
+                style={{ width: "100px" }}
+              />
+            </div>
+            <MDBTypography tag="h4">
+              {event.createdBy.firstName} {event.createdBy.lastName}
+            </MDBTypography>
+            <MDBCardText className="text-muted mb-4">
+              Spikeball & Basket
+            </MDBCardText>
+            <div className="mb-4 pb-2">
+              <Button variant="primary" onClick={handleShowMessagePopup}>
+                Message Me
+              </Button>
+              <MessagePopup
+                show={showMessagePopup}
+                onHide={handleCloseMessagePopup}
+                recipientEmail={event.createdBy.email}
+                senderEmail={userEmail}
+                eventName={event.title}
+              />
+            </div>
+
+            <div className="d-flex justify-content-between text-center mt-5 mb-2">
+              <div>
+                <MDBCardText className="mb-1 h5">13</MDBCardText>
+                <MDBCardText className="small text-muted mb-0">
+                  Events Created
+                </MDBCardText>
+              </div>
+              <div>
+                <MDBCardText className="mb-1 h5">42</MDBCardText>
+                <MDBCardText className="small text-muted mb-0">
+                  Events Attended
+                </MDBCardText>
+              </div>
+            </div>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBCol>
+    </MDBRow>
+  </MDBContainer>
+</div>
+
+       
+     
+    </MDBRow>
+
+    <h1 className="text-start mx-5 fw-bold">{event.title}</h1>
+
+<div className="d-flex">
+    <div className="event-info mt-5 col-10">
+      <h2>Event Information</h2>
+      <p>Lets play <strong>{event.category}!</strong></p>
+      <p>{event.description}</p>
+      <p>
+        <strong>Location:</strong> {event.location}
+      </p>
+      <p>
+      <strong>Date & Time:</strong> {formatDate(event.date)}
+      </p>
+      <label htmlFor="reminder-checkbox" className="form-check-label">
+  Set Reminder
+</label>
+<input
+  type="checkbox"
+  id="reminder-checkbox"
+  checked={reminderSet}
+  onChange={handleReminderChange}
+  className="form-check-input"
+/>
+
+      <Button onClick={handleAttendEvent} id="attend-button">
+            {isAttending ? "Unattend Event" : "Attend Event"}
+          </Button>
+          {userId === event.createdBy._id && (
+  <div className="mt-3">
+    <button onClick={() => setIsEditModalVisible(true)}>Edit Event</button>
+
+{isEditModalVisible && (
+  <EditEventModal
+    event={event}
+    onClose={() => setIsEditModalVisible(false)}
+    onEventUpdated={handleEventUpdated}
+  />
+)}
+    <Button onClick={handleDeleteEvent}  >
+      Delete Event
+    </Button>
+ 
+  </div>
+)}
+  
+    </div>
+    <div className="col-2">
+          <p className="text-center fs-4" id="sharetext">Share Event!</p>
+          <div className="d-flex flex-column">
           <FacebookShareButton url={shareUrl} quote={title}>
             <FacebookIcon size={32} round={true} />
           </FacebookShareButton>
@@ -206,118 +365,11 @@ return (
           >
             <FaFacebookMessenger size={32} round={true} />
           </FacebookMessengerShareButton>
-        </div>
-      </MDBCol>
-      <MDBCol className="d-flex justify-content-center">
-        <div className="col-md-11">
-          <img src={event.image} alt="eventimage" width={600} className="" />
-         
-        </div>
-      </MDBCol>
-      <MDBCol className="d-flex justify-content-center align-items-start">
-        <div className="attendees-section">
-          <h2>Attendees: {event.attendees.length}</h2>
-          <div>
-            {event.attendees.map((attendee) => (
-              <div key={attendee._id}>
-                <MDBCardImage
-                  className="rounded-circle shadow-1-strong me-3"
-                  src={attendee.avatar}
-                  alt="avatar"
-                  width="45"
-                  height="45"
-                />
-                <span>{attendee.firstName}</span>
-              </div>
-            ))}
           </div>
-        </div>
-      </MDBCol>
-    </MDBRow>
-
-<div className="d-flex">
-    <div className="event-info mt-5 col-8">
-      <h2>Event Information</h2>
-      <p>Lets play <strong>{event.category}!</strong></p>
-      <p>{event.description}</p>
-      <p>
-        <strong>Location:</strong> {event.location}
-      </p>
-      <p>
-      <strong>Date & Time:</strong> {formatDate(event.date)}
-      </p>
-      <label htmlFor="reminder-checkbox" className="form-check-label">
-  Set Reminder
-</label>
-<input
-  type="checkbox"
-  id="reminder-checkbox"
-  checked={reminderSet}
-  onChange={handleReminderChange}
-  className="form-check-input"
-/>
-
-      <Button onClick={handleAttendEvent} id="attend-button">
-            {isAttending ? "Unattend Event" : "Attend Event"}
-          </Button>
-    </div>
-   
+        </div> 
    
           
-          <div className="col-4">
-        <h2>Event Creator</h2>
-        <MDBContainer className="container py-2 ">
-          <MDBRow className="justify-content-center align-items-center">
-            <MDBCol xl={10}>
-              <MDBCard style={{ borderRadius: "15px" }}>
-              <MDBCardBody className="text-center">
-                    <div className="mt-3 mb-4">
-                      <MDBCardImage
-                        src={event.createdBy.avatar}
-                        className="rounded-circle"
-                        fluid
-                        style={{ width: "100px" }}
-                      />
-                    </div>
-                    <MDBTypography tag="h4">
-                      {event.createdBy.firstName} {event.createdBy.lastName}
-                    </MDBTypography>
-                    <MDBCardText className="text-muted mb-4">
-                      Spikeball & Basket
-                    </MDBCardText>
-                    <div className="mb-4 pb-2">
-                      <Button variant="primary" onClick={handleShowMessagePopup}>
-                        Message Me
-                      </Button>
-                      <MessagePopup
-                        show={showMessagePopup}
-                        onHide={handleCloseMessagePopup}
-                        recipientEmail={event.createdBy.email}
-                        senderEmail={userEmail}
-                        eventName={event.title}
-                      />
-                    </div>
-
-                    <div className="d-flex justify-content-between text-center mt-5 mb-2">
-                      <div>
-                        <MDBCardText className="mb-1 h5">13</MDBCardText>
-                        <MDBCardText className="small text-muted mb-0">
-                          Events Created
-                        </MDBCardText>
-                      </div>
-                      <div>
-                        <MDBCardText className="mb-1 h5">42</MDBCardText>
-                        <MDBCardText className="small text-muted mb-0">
-                          Events Attended
-                        </MDBCardText>
-                      </div>
-                    </div>
-                  </MDBCardBody>
-                </MDBCard>
-              </MDBCol>
-            </MDBRow>
-          </MDBContainer>
-        </div>
+     
     </div>
      
       

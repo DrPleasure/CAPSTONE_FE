@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
+import "./MessagePopup.css"
 
 export default function MessagePopup({ show, onHide, recipientEmail, senderEmail, eventName }) {
   const [message, setMessage] = useState("");
@@ -60,10 +61,10 @@ export default function MessagePopup({ show, onHide, recipientEmail, senderEmail
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={onHide}>
+        <Button className="yellowbutton" onClick={onHide}>
           Close
         </Button>
-        <Button variant="primary" onClick={handleSubmit}>
+        <Button className="yellowbutton" onClick={handleSubmit}>
           Send Message
         </Button>
       </Modal.Footer>

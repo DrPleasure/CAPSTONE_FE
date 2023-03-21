@@ -1,4 +1,49 @@
-#attend-button {
-    margin-top: 5rem;
-   
+#content {
+    background-color: var(--grey);
+    opacity: 0.9
 }
+
+.attendees-section {
+    color: var(--white);
+  }
+  
+  .attendee-card {
+    width: 100px;
+    color: var(--white);
+    border-radius: 10px;
+    margin: 5px;
+  }
+  
+  .event-creator {
+    color: var(--yellow);
+  }
+  
+  .creator-card {
+    background-color: var(--black);
+    color: var(--yellow);
+    border: 1px solid var(--yellow);
+  }
+  
+  .creator-card .btn-primary {
+    background-color: var(--yellow);
+    border-color: var(--yellow);
+    color: var(--black);
+  }
+  
+  .creator-card .btn-primary:hover {
+    background-color: var(--yellow-hover);
+    border-color: var(--yellow-hover);
+  }
+  
+  .event-creator .text-muted {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+  
+  #sharetext {
+    color: var(--white);
+  }
+
+  #eventimage {
+    border-radius:5%;
+  }
+  

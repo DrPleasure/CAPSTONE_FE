@@ -1,0 +1,67 @@
+#eventform {
+    background-color: var(--black);
+    color: var(--yellow)
+  }
+  
+  .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: var(--black);
+    }
+  
+    form {
+      font-weight:700
+    }
+  
+    .form-control {
+      opacity: 0.9
+    }
+    
+    .form-input {
+      display: block;
+      width: 80%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      font-size: 18px;
+    
+    }
+    
+    .form-select {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    
+    .form-label {
+      font-size: 22px;
+      margin-bottom: 10px;
+      display: block;
+      font-weight: bold;
+    }
+  
+  
+    #buttoner {
+      color: var(--yellow);
+      border: 1px solid var(--yellow);
+    }
+    
+    .form-button:hover {
+      background-color: #4d4d4d;
+    }
+    
+    .form-button:active {
+      background-color: #1a1a1a;
+    }
+    
+    #closeformbutton {
+      color: var(--yellow);
+      background-color: var(--yellow);
+      font-size: 1.2rem;
+      font-weight: bold;
+    }

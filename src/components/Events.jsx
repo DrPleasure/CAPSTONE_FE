@@ -148,7 +148,7 @@ export default function Events() {
 
     </div>
         
-        <div className="d-flex justify-content-around my-5">
+        <div className="d-flex justify-content-around" id="sliderdiv">
           <div>
         <button onClick={handleCreateNewEventClick} id="buttoncreate">Create Event</button>
         {showCreateNewEvent && <CreateNewEvent onCloseForm={handleCloseForm} />}
@@ -216,7 +216,7 @@ export default function Events() {
       <Col key={event._id}>
         <Link className="event-card-link" to={{ pathname: `/events/${event._id}`, state: { event } }}>
           <div>
-            <Card id="eventcard" className="fs-6 mb-4">
+            <Card id="eventcard" className="fs-6 mb-4 text-center">
               <Card.Img variant="top" src={event.image} alt="eventimage" className="card-img" />
               <Card.Body>
                 <Card.Title className="yellowtext fw-bold fs-4 text-center">{event.title}</Card.Title>

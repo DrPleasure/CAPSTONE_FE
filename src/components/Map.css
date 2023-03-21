@@ -4,10 +4,12 @@ label {
 }
 
 #buttonsearch {
-    background-color: var(--black);
     color: var(--white);
+    font-weight: bold;
+    background-color: var(--black);
     border: 1px solid var(--yellow);
     border-radius: 10%;
+    height: 40px;
 }
 
 #themap {
