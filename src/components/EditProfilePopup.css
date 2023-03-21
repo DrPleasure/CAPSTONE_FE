@@ -1,11 +1,20 @@
-body {
-    background-color: var(--grey);
-}
+
 
 .modal-content {
     background-color: var(--black);
+    color: var(--white)
 }
 
 .modal-title {
+    color: var(--yellow)
+}
+
+.buttons {
+    background-color: var(--black);
+    color: var(--white);
+    border: 1px solid var(--yellow)
+}
+
+.whitetext {
     color: var(--white)
 }

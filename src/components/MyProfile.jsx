@@ -36,9 +36,7 @@ export default function MyProfile() {
                       <MDBCardImage src={user.avatar}
                         alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail" fluid style={{ width: '150px', zIndex: '1' }} />
 
-                      <MDBBtn rounded
-   
-    color="success"
+                      <MDBBtn rounded id='editprofilebutton'
     style={{ height: '36px', overflow: 'visible' }}
     onClick={() => setShowEditProfilePopup(true)}
   >
@@ -60,18 +58,18 @@ export default function MyProfile() {
                     <div className="d-flex justify-content-end text-center py-1">
                       <div>
                         <MDBCardText className="mb-1 h5">253</MDBCardText>
-                        <MDBCardText className="small text-muted mb-0">Events Created</MDBCardText>
+                        <MDBCardText className="small mb-0 yellowtext">Events Created</MDBCardText>
                       </div>
                       <div className="px-3">
                         <MDBCardText className="mb-1 h5">1026</MDBCardText>
-                        <MDBCardText className="small text-muted mb-0">Events Attended</MDBCardText>
+                        <MDBCardText className="small yellowtext mb-0">Events Attended</MDBCardText>
                       </div>
                     
                     </div>
                   </div>
                   <MDBCardBody className=" p-4">
                     <div className="mb-5">
-                      <p className="lead fw-normal mb-1">About</p>
+                      <p className="lead fw-normal mb-1 yellowtext">About</p>
                       <div className="p-4" >
                         <MDBCardText className="font-italic mb-1">Love some good football and a pint</MDBCardText>
                         <MDBCardText className="font-italic mb-1">Spikeball sometimes too</MDBCardText>
@@ -80,7 +78,6 @@ export default function MyProfile() {
                     </div>
                     <div className="d-flex justify-content-between align-items-center mb-4">
                       <MDBCardText className="lead fw-normal mb-0">Recent Events Attended</MDBCardText>
-                      <MDBCardText className="mb-0"><a href="#!" className="text-muted">Show all</a></MDBCardText>
                     </div>
                     <MDBRow>
                       <MDBCol className="mb-2">

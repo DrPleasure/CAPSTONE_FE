@@ -41,7 +41,7 @@ export default function EditProfilePopup({ show, onHide, user, setUser }) {
       <Modal.Body>
         <Form>
           <Form.Group controlId="firstName">
-            <Form.Label>First Name</Form.Label>
+            <Form.Label className='whitetext'>First Name</Form.Label>
             <Form.Control
               type="text"
               value={firstName}
@@ -49,7 +49,7 @@ export default function EditProfilePopup({ show, onHide, user, setUser }) {
             />
           </Form.Group>
           <Form.Group controlId="lastName">
-            <Form.Label>Last Name</Form.Label>
+            <Form.Label className='whitetext'>Last Name</Form.Label>
             <Form.Control
               type="text"
               value={lastName}
@@ -57,7 +57,7 @@ export default function EditProfilePopup({ show, onHide, user, setUser }) {
             />
           </Form.Group>    
           <Form.Group controlId="avatar">
-            <Form.Label>Avatar</Form.Label>
+            <Form.Label className='whitetext'>Avatar</Form.Label>
             <Form.Control
               type="text"
               value={avatar}
@@ -65,7 +65,7 @@ export default function EditProfilePopup({ show, onHide, user, setUser }) {
             />
           </Form.Group>
           <Form.Group controlId="city">
-            <Form.Label>City</Form.Label>
+            <Form.Label className='whitetext'>City</Form.Label>
             <Form.Control
               type="text"
               value={city}
@@ -75,10 +75,10 @@ export default function EditProfilePopup({ show, onHide, user, setUser }) {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={onHide}>
+        <Button className='buttons' onClick={onHide}>
           Close
         </Button>
-        <Button variant="primary" onClick={handleSubmit}>
+        <Button className='buttons' onClick={handleSubmit}>
           Save Changes
         </Button>
       </Modal.Footer>

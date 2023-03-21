@@ -11,3 +11,12 @@ body {
     font-weight: bolder;
     color: var(--yellow)
 }
+
+.yellowtext {
+    color: var(--yellow)
+}
+
+#editprofilebutton {
+    background-color: var(--black);
+    border: 1px solid var(--yellow);
+}

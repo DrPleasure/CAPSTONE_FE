@@ -61,10 +61,12 @@ export default function CommentSection({ eventId, comments, setEvent }) {
                 <p className={commentClass}>
                   {comment.user.firstName} {comment.user.lastName}{" "}
                 </p>
+                {level === 0 && (
                 <a href="#!" onClick={() => setParentComment(comment._id)}>
                   <FaPaperPlane className="me-2" />
                   <span className="small">Reply</span>
                 </a>
+              )}
               </div>
               <p className="small mb-0">{comment.text}</p>
             </div>
