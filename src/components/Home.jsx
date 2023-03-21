@@ -117,26 +117,29 @@ const Home = () => {
       <div>
         <Navbartop />
       </div>
-      <div>
-        <Jumbotroner />
-      </div>
-      {showHome && (
-        <div className="mainContainer d-flex justify-content-center">
-          <Events />
+      <div className="content">
+        <div>
+          <Jumbotroner />
         </div>
-      )}
-      <div style={{ position: "relative", width: "100%", height: "100%" }}>
-        {balls.map((ball, index) => {
-          const Component = ball.Component;
-          return <Component key={index} x={ball.x} y={ball.y} />;
-        })}
+        {showHome && (
+          <div className="mainContainer d-flex justify-content-center">
+            <Events />
+          </div>
+        )}
+        <div style={{ position: "relative", width: "100%", height: "100%" }}>
+          {balls.map((ball, index) => {
+            const Component = ball.Component;
+            return <Component key={index} x={ball.x} y={ball.y} />;
+          })}
+        </div>
       </div>
       {showHome && (
-        <div >
+        <div>
           <Footer />
         </div>
       )}
     </>
   );
+
 };
 export default Home;

@@ -59,3 +59,9 @@
     background-color: #1a1a1a;
   }
   
+  #closeformbutton {
+    color: var(--yellow);
+    background-color: var(--yellow);
+    font-size: 1.2rem;
+    font-weight: bold;
+  }

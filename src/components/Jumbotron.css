@@ -1,12 +1,14 @@
 .jumbotron {
-background-color: var(--black);
-color: var(--yellow)
+background-color: var(--grey);
+color: var(--yellow);
+border-radius: 2%;
 }
 
 #button {
-   color: var(--black);
-   background-color: var(--white);
+   color: var(--white);
+   background-color: var(--black);
    margin-top: 20px;
+   border: 1px solid var(--yellow)
 }
 
 #secondButton {
@@ -32,4 +34,8 @@ color: var(--yellow)
 
  .image3 {
   max-width: 20%;
+ }
+
+ #aboutparagraph {
+  color: var(--white)
  }

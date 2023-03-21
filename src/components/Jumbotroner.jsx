@@ -22,6 +22,13 @@ import setBodyColor from './SetBodyColor';
 export default function Jumbotroner() {
   const [showSecondButton, setShowSecondButton] = useState(false);
   const [showCreateEventForm, setShowCreateEventForm] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+
+  const handleCloseForm = () => {
+    setShowCreateEventForm(false);
+  };
+  
 
   const handleCreateEventClick = () => {
     setShowCreateEventForm(true);
@@ -43,7 +50,7 @@ export default function Jumbotroner() {
         <div className='d-flex my-5 mx-5 jumbotron'>
           <div className='col-6 my-4 mx-3 d-flex flex-column justify-content-around'>
       <h1 className="display-3 fw-bold">Sportify <img src={jumboimage3} className="image3"></img></h1>
-      <p className='fs-4'>
+      <p className='fs-4' id='aboutparagraph'>
       Sportify is a social sports event platform where you can create and join events for all kinds of sports and skill levels. Whether you're a beginner or an experienced athlete, there's something for everyone here. Join our community and start playing today!
       </p>
       <div>
@@ -67,7 +74,7 @@ export default function Jumbotroner() {
 </div>
 
       </div>
-      {showCreateEventForm && <CreateNewEvent />}
+      {showCreateEventForm && <CreateNewEvent onCloseForm={handleCloseForm} />}
 
     </MDBContainer>
       );

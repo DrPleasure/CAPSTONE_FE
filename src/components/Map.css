@@ -5,6 +5,12 @@ label {
 
 #buttonsearch {
     background-color: var(--black);
-    color: var(--yellow);
-    border: 1px solid var(--yellow)
+    color: var(--white);
+    border: 1px solid var(--yellow);
+    border-radius: 10%;
 }
+
+#themap {
+    border-radius: 1%;
+}
+

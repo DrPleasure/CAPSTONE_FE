@@ -8,7 +8,7 @@ const containerStyle = {
   height: '400px',
 };
 
-export default function Map({ locations, setFilteredEvents, props }) {
+export default function Map({ locations, setFilteredEvents, props, eventDistances, setEventDistances }) {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [searchLocation, setSearchLocation] = useState('');
@@ -98,20 +98,24 @@ setFilteredEvents(sorted);
 
   return (
     <>
-      <div>
+      <div id='map' className='text-center'>
+        <h1 className='fw-bold'>Locations</h1>
         <label className='fs-5'>
           Calculate Distances to Events from:
           <input type="text" className='mx-3' value={searchLocation} onChange={(e) => setSearchLocation(e.target.value)} />
         </label>
         <button onClick={handleSearchLocation} id="buttonsearch">Search</button>
-      </div>
+      
       <div style={containerStyle}>
-        <GoogleMap
+        <GoogleMap id='themap'
           apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
           onLoad={onMapLoad}
           mapContainerStyle={containerStyle}
           center={center}
           zoom={15}
+          options={{
+            mapId: '1fda61bdfc8cdc17',
+          }}
         >
           {sortedEvents.map((event) => (
             <Marker
@@ -140,7 +144,7 @@ setFilteredEvents(sorted);
           ))}
         </GoogleMap>
       </div>
-   
+      </div>
     </>
   );
               }  

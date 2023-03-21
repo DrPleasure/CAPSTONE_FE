@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import './CreateNewEvent.css';
 
-export default function CreateNewEvent() {
+export default function CreateNewEvent({onCloseForm}) {
 
     const navigate = useNavigate();
 
@@ -50,7 +50,13 @@ export default function CreateNewEvent() {
 
   return (
     <div className="container mt-3" id='eventform'>
-        
+         <button
+    type="button"
+    className="btn-close float-end my-2"
+    aria-label="Close"
+    id='closeformbutton'
+    onClick={onCloseForm}
+  ></button>
       <h2 className='fs-2 fw-bold'>Create New Event</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -93,6 +99,7 @@ export default function CreateNewEvent() {
             className="form-control"
             id="image"
             name="image"
+            placeholder='image URL'
             value={eventData.image}
             onChange={handleChange}
           />
@@ -104,6 +111,8 @@ export default function CreateNewEvent() {
             className="form-control"
             id="description"
             name="description"
+            placeholder='Any details specific to the event. What do people need to bring?'
+
             value={eventData.description}
             onChange={handleChange}
             required

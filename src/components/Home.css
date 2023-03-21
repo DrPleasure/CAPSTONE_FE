@@ -1,9 +1,18 @@
-.sticky-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    z-index: 999;
-    display:none;
-  }
-  
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+/* Ensure footer doesn't shrink */
+footer {
+  flex-shrink: 0;
+}

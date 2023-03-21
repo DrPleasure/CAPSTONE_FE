@@ -21,6 +21,11 @@ export default function Events() {
   const [selectedDays, setSelectedDays] = useState([]);
   const [locations, setLocations] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [sliderValue, setSliderValue] = useState(3);
+  const [maxDistance, setMaxDistance] = useState(Infinity);
+
+
+
 
 
   useEffect(() => {
@@ -51,7 +56,7 @@ export default function Events() {
       setEvents(data);
     };
     fetchEvents();
-  }, [selectedCategories, selectedDays]);
+  }, [selectedCategories, selectedDays, maxDistance]);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -82,6 +87,13 @@ export default function Events() {
     }
   };
 
+  const handleSliderChange = (e) => {
+    setSliderValue(e.target.value);
+    setMaxDistance(parseFloat(e.target.value));
+  };
+  
+  
+
   const handleDayFilterChange = (event) => {
     const day = event.target.name;
     if (selectedDays.includes(day)) {
@@ -91,45 +103,78 @@ export default function Events() {
     }
   };
 
+  const handleCloseForm = () => {
+    setShowCreateNewEvent(false);
+  };
+  
+
   const eventsWithDistances = events.map(event => {
     const eventDistance = eventDistances.find(dist => dist._id === event._id);
     return eventDistance ? { ...event, distance: eventDistance.distance } : event;
   });
 
   const filteredEvents = eventsWithDistances.filter((event) => {
-    if (selectedCategories.length === 0 && selectedDays.length === 0) {
+    if (selectedCategories.length === 0 && selectedDays.length === 0 && maxDistance === Infinity) {
       return true;
     }
-
+  
     let categoryMatch = true;
     if (selectedCategories.length > 0) {
       categoryMatch = selectedCategories.includes(event.category);
     }
-
+  
     let dayMatch = true;
     if (selectedDays.length > 0) {
       const eventDate = new Date(event.date);
       const eventDay = eventDate.toLocaleString("default", { weekday: "long" });
       dayMatch = selectedDays.includes(eventDay);
     }
-
-    return categoryMatch && dayMatch;
+  
+    let distanceMatch = true;
+    if (maxDistance !== Infinity) {
+      distanceMatch = event.distance <= maxDistance;
+    }
+  
+    return categoryMatch && dayMatch && distanceMatch;
   });
+  
 
   return (
     <>
       <div className="container mt-3" id="events">
       <div>
-      <h1>Locations</h1>
-      <Map locations={filteredEvents} setFilteredEvents={setEvents} />
+      <Map locations={filteredEvents} setFilteredEvents={setEvents} eventDistances={eventDistances} setEventDistances={setEventDistances} />
+
+
     </div>
-        <h1 className="text-center">Upcoming Events</h1>
+        <h1 className="text-center my-5 fw-bold">Upcoming Events</h1>
+        
+        <div className="d-flex justify-content-around my-3">
+          <div>
         <button onClick={handleCreateNewEventClick} id="buttoncreate">Create Event</button>
-        {showCreateNewEvent && <CreateNewEvent />}
-        <div className="d-flex justify-content-center">
+        {showCreateNewEvent && <CreateNewEvent onCloseForm={handleCloseForm} />}
+        </div>
+        <div class="range">
+          <p className="yellowtext">Search location on map above for distances</p>
+        <input
+        type="range"
+        className="form-range"
+        id="customRange1"
+        min="0.1"
+        max="6"
+        step="0.1"
+        value={sliderValue}
+        onChange={handleSliderChange}
+        onInput={handleSliderChange}
+
+      />
+  <label  className="text-center fw-bold fs-5">Display events within:{sliderValue} km</label>
+
+</div>
     <div>
+      
       <Dropdown show={showDropdown} onClick={() => setShowDropdown(!showDropdown)}>
-        <Dropdown.Toggle variant="outline-secondary">
+        <Dropdown.Toggle  id="filterdropdown" >
           Filter
         </Dropdown.Toggle>
         <Dropdown.Menu>
@@ -166,37 +211,41 @@ export default function Events() {
       </Dropdown>
     </div>
   </div>
-        <Row xs={1} md={2} className="g-4">
-        {filteredEvents.map((event) => (
-            <Col key={event._id}>
-              <Link to={{ pathname: `/events/${event._id}`, state: { event } }}>
-                <Card>
-                  <Card.Img variant="top" src={event.image} alt="eventimage" />
-                  <Card.Body>
-                    <Card.Title>{event.title}</Card.Title>
-                    <Card.Text>
-                      <strong>Category:</strong> {event.category}
-                    </Card.Text> 
-                    <Card.Text>
-                      <strong>Location:</strong> {event.location}
-                    </Card.Text>
-                    <Card.Text>
-                      <strong>Description:</strong> {event.description}
-                    </Card.Text>
-                    <Card.Text>
-                      <strong>Date:</strong> {formatDate(event.date)}
-                    </Card.Text>
-                    
-                      <Card.Text>
-                        <strong>Distance:</strong> {event.distance} km
-                      </Card.Text>
-                    
-                  </Card.Body>
-                </Card>
-              </Link>
-            </Col>
-          ))}
-        </Row>
+  <Row xs={1} md={2} lg={3} className="g-4">
+  {filteredEvents
+    .sort((a, b) => a.distance - b.distance)
+    .map((event) => (
+      <Col key={event._id}>
+        <Link className="event-card-link" to={{ pathname: `/events/${event._id}`, state: { event } }}>
+          <div>
+            <Card id="eventcard" className="fs-6 mb-4">
+              <Card.Img variant="top" src={event.image} alt="eventimage" className="card-img" />
+              <Card.Body>
+                <Card.Title className="yellowtext fw-bold fs-4 text-center">{event.title}</Card.Title>
+                <Card.Text>
+                  <strong className="yellowtext">Category:</strong> {event.category}
+                </Card.Text> 
+                <Card.Text>
+                  <strong className="yellowtext">Location:</strong> {event.location}
+                </Card.Text>
+                <Card.Text>
+                  <strong className="yellowtext">Description:</strong> {event.description}
+                </Card.Text>
+                <Card.Text>
+                  <strong className="yellowtext">Date:</strong> {formatDate(event.date)}
+                </Card.Text>
+                
+                  <Card.Text>
+                    <strong className="yellowtext">Distance:</strong> {event.distance} km
+                  </Card.Text>
+                
+              </Card.Body>
+            </Card>
+          </div>
+        </Link>
+      </Col>
+    ))}
+</Row>
       </div>
     </>
   );
