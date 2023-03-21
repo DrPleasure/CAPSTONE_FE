@@ -100,11 +100,7 @@ setFilteredEvents(sorted);
     <>
       <div id='map' className='text-center'>
         <h1 className='fw-bold'>Locations</h1>
-        <label className='fs-5'>
-          Calculate Distances to Events from:
-          <input type="text" className='mx-3' value={searchLocation} onChange={(e) => setSearchLocation(e.target.value)} />
-        </label>
-        <button onClick={handleSearchLocation} id="buttonsearch">Search</button>
+      
       
       <div style={containerStyle}>
         <GoogleMap id='themap'
@@ -143,6 +139,13 @@ setFilteredEvents(sorted);
             </Marker>
           ))}
         </GoogleMap>
+        <div className='mt-2'>
+        <label className='fs-5 fw-bold'>
+          Calculate distance:
+          <input type="text" className='mx-3' value={searchLocation} onChange={(e) => setSearchLocation(e.target.value)} />
+        </label>
+        <button onClick={handleSearchLocation} id="buttonsearch">Search</button>
+        </div>
       </div>
       </div>
     </>

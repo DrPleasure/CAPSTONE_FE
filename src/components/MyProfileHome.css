@@ -10,3 +10,8 @@
 
 }
 
+
+.yellowtext p {
+    color: var(--yellow);
+    text-decoration: none;
+}

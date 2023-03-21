@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
+import "./EditProfilePopup.css"
 
 export default function EditProfilePopup({ show, onHide, user, setUser }) {
   const [firstName, setFirstName] = useState(user.firstName);
@@ -33,8 +34,8 @@ export default function EditProfilePopup({ show, onHide, user, setUser }) {
   };
 
   return (
-    <Modal show={show} onHide={onHide} centered>
-      <Modal.Header closeButton>
+    <Modal show={show} onHide={onHide} centered >
+      <Modal.Header closeButton id="modal">
         <Modal.Title>Edit Profile</Modal.Title>
       </Modal.Header>
       <Modal.Body>

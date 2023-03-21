@@ -4,7 +4,7 @@
   }
 
   #buttoncreate {
-    color: yellow;
+    color: var(--white);
     font-weight: bold;
     background-color: var(--black);
     border: 1px solid var(--yellow);
@@ -17,7 +17,7 @@
   }
 
   #filterdropdown {
-    color: var(--yellow);
+    color: var(--white);
     background-color: black;
     border: 1px solid var(--yellow);
     font-weight: bold;
@@ -26,9 +26,12 @@
   #eventcard {
     background-color: var(--grey);
     color: var(--white);
-    height:500px;
-  
+    height: 500px;
+    box-shadow: 4px 4px 6px rgba(255, 255, 0, 0.5);
   }
+  
+  
+  
 
   .yellowtext {
     color: var(--yellow)

@@ -1,0 +1,11 @@
+body {
+    background-color: var(--grey);
+}
+
+.modal-content {
+    background-color: var(--black);
+}
+
+.modal-title {
+    color: var(--white)
+}

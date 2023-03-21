@@ -147,15 +147,13 @@ export default function Events() {
 
 
     </div>
-        <h1 className="text-center my-5 fw-bold">Upcoming Events</h1>
         
-        <div className="d-flex justify-content-around my-3">
+        <div className="d-flex justify-content-around my-5">
           <div>
         <button onClick={handleCreateNewEventClick} id="buttoncreate">Create Event</button>
         {showCreateNewEvent && <CreateNewEvent onCloseForm={handleCloseForm} />}
         </div>
         <div class="range">
-          <p className="yellowtext">Search location on map above for distances</p>
         <input
         type="range"
         className="form-range"
