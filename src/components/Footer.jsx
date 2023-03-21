@@ -12,17 +12,17 @@ import "./Footer.css"
 
 export default function Footer() {
   return (
-    <MDBFooter className='text-center' color='white' bgColor='dark'>
+    <MDBFooter className='text-center' color='white' >
       <MDBContainer className='p-4'>
       <section className='mb-4'>
     
         
-<div className="d-flex justify-content-around">
+<div className="d-flex justify-content-around" id='icons'>
             <a href="twitter" class="fa fa-twitter"></a>
             <a href="facebook" class="fa fa-facebook"></a>
             <a href="instagram" class="fa fa-instagram"></a>
             <a href="linkedin" class="fa fa-linkedin"></a>
-            <a href="google" class="fa fa-google"></a>
+            <a href="google" class="fa fa-"></a>
             <a href="github" class="fa fa-github"></a>
             </div>
 
@@ -42,11 +42,11 @@ export default function Footer() {
               </MDBCol>
 
               <MDBCol md='5' start>
-                <MDBInput contrast type='email' label='Email address' className='mb-4' />
+                <MDBInput contrast type='email' className='mb-4'  placeholder='Your email'/>
               </MDBCol>
 
               <MDBCol size="auto">
-                <MDBBtn outline color='light' type='submit' className='mb-4'>
+                <MDBBtn outline color='light' type='submit' className='mb-4' id='subbutton'>
                   Subscribe
                 </MDBBtn>
               </MDBCol>

@@ -8,7 +8,8 @@
 
 
   #footerlinks div a{
-    color: var(--yellow)
+    color: var(--yellow);
+    text-decoration: none;
   }
 
   /* Style all font awesome icons */
@@ -66,3 +67,7 @@
   background: #333;
   color: white;
 }
+
+ #subbutton {
+  border: 1px solid var(--yellow)
+ }

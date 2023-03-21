@@ -3,7 +3,7 @@ body {
 }
 
 #container {
-    background-color: var(--grey);
+    background-color: var(--black);
     color: var(--white)
 }
 
