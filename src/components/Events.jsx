@@ -27,6 +27,9 @@ export default function Events() {
   const [selectedId, setSelectedId] = useState(null);
 const [canDrag, setCanDrag] = useState(false);
 const containerRefs = useRef({});
+const [searchPerformed, setSearchPerformed] = useState(false);
+
+
 
 
 
@@ -164,7 +167,8 @@ const containerRefs = useRef({});
     <>
       <div className="container mt-3" id="events">
       <div>
-      <Map locations={filteredEvents} setFilteredEvents={setEvents} eventDistances={eventDistances} setEventDistances={setEventDistances} />
+      <Map locations={filteredEvents} setFilteredEvents={setEvents} eventDistances={eventDistances} setEventDistances={setEventDistances}   setSearchPerformed={setSearchPerformed}
+/>
 
 
     </div>
@@ -174,22 +178,25 @@ const containerRefs = useRef({});
         <button onClick={handleCreateNewEventClick} id="buttoncreate">Create Event</button>
         {showCreateNewEvent && <CreateNewEvent onCloseForm={handleCloseForm} />}
         </div>
-        <div class="range">
-        <input
-        type="range"
-        className="form-range"
-        id="customRange1"
-        min="0.1"
-        max="6"
-        step="0.1"
-        value={sliderValue}
-        onChange={handleSliderChange}
-        onInput={handleSliderChange}
+        {searchPerformed && (
+  <div class="range">
+    <input
+      type="range"
+      className="form-range"
+      id="customRange1"
+      min="0.1"
+      max="10"
+      step="0.1"
+      value={sliderValue}
+      onChange={handleSliderChange}
+      onInput={handleSliderChange}
+    />
+    <label className="text-center fw-bold fs-5">
+      Display events within:{sliderValue} km
+    </label>
+  </div>
+)}
 
-      />
-  <label  className="text-center fw-bold fs-5">Display events within:{sliderValue} km</label>
-
-</div>
     <div>
       
       <Dropdown show={showDropdown} onClick={() => setShowDropdown(!showDropdown)}>

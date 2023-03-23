@@ -8,7 +8,7 @@ const containerStyle = {
   height: '400px',
 };
 
-export default function Map({ locations, setFilteredEvents, props, eventDistances, setEventDistances }) {
+export default function Map({ locations, setFilteredEvents, props, eventDistances, setEventDistances, setSearchPerformed }) {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [searchLocation, setSearchLocation] = useState('');
@@ -58,6 +58,7 @@ export default function Map({ locations, setFilteredEvents, props, eventDistance
   .sort((a, b) => a.distance - b.distance);
 
   setEventDistances(sorted);
+  setSearchPerformed(true); // Update the searchPerformed state
 
 
 setFilteredEvents(sorted);
