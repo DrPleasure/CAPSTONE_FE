@@ -6,6 +6,7 @@ import {
   MDBBtn,
 } from 'mdb-react-ui-kit'
 import { useNavigate } from 'react-router-dom'
+import "./Register.css"
 
 const Register = () => {
   const navigate = useNavigate()
@@ -75,7 +76,7 @@ const Register = () => {
 
 
   return (
-    <MDBContainer className="p-3 my-5 d-flex flex-column w-25">
+    <MDBContainer className="p-3 my-5 d-flex flex-column w-25 yellowtext">
       First name
       <MDBInput
         wrapperClass="mb-4"
@@ -111,12 +112,12 @@ const Register = () => {
         value={city}
         onChange={(event) => handleCity(event)}
       />
-      <Button className="mb-4" onClick={handleRegister}>
+      <Button className="mb-4 button" onClick={handleRegister}>
         Register
       </Button>
       <div className="text-center">
-        <p>
-          Already have an account? <a href="Login">Sign in</a>
+        <p >
+          Already have an account? <a href="Login" id='signin'> - Sign in -</a>
         </p>
       </div>
     </MDBContainer>

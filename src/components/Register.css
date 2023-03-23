@@ -1,0 +1,14 @@
+.yellowtext {
+    color: var(--yellow)
+}
+
+.button {
+    background-color: var(--black);
+    color: var(--white);
+    border: 1px solid var(--yellow);
+}
+
+#signin {
+   
+    text-decoration: none;
+}

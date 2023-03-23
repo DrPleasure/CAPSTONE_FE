@@ -220,7 +220,7 @@ const [searchPerformed, setSearchPerformed] = useState(false);
               key={category}
               name={category}
               onClick={(e) => { e.stopPropagation(); handleCategoryFilterChange(e); }}
-              className={selectedCategories.includes(category) ? "active-filter" : "dropdownitem fs-6"}
+              className={selectedCategories.includes(category) ? "active-filter" : "dropdownitem fs-6 mb-2"}
             >
               {category}
             </Dropdown.Item>
@@ -242,7 +242,7 @@ const [searchPerformed, setSearchPerformed] = useState(false);
               key={time}
               name={time}
               onClick={(e) => { e.stopPropagation(); handleDayFilterChange(e); }}
-              className={selectedDays.includes(time) ? "active-filter" : "dropdownitem fs-6"}
+              className={selectedDays.includes(time) ? "active-filter" : "dropdownitem fs-6 mb-2"}
             >
               {time}
             </Dropdown.Item>

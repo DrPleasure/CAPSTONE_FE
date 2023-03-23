@@ -196,7 +196,7 @@ const handleReminderChange = async (e) => {
   }
 
   // const shareUrl = `http://localhost:3000/events/${id}`;
-  const shareUrl = `https://vercel.com/drpleasure/ai-image-generator`;
+  const shareUrl = `${window.location.origin}/events/${id}`;
   const title = event.title;
 
 // ... (imports and other parts of the code)
