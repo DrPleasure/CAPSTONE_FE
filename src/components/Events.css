@@ -23,6 +23,22 @@
     font-weight: bold;
   }
 
+  #dropdownmenu {
+    width: 400px;
+    background-color: var(--black);
+    color: var(--white);
+    padding: 0;
+    border: 1px solid var(--yellow)
+  }
+
+  .dropdownheader {
+    color: var(--yellow)
+  }
+
+  .dropdownitem {
+    color: var(--white);
+  }
+
   #eventcard {
     background-color: var(--black);
     color: var(--white);
@@ -68,3 +84,8 @@
   }
 
  
+  .vertical-divider {
+    width: 1px;
+    background-color: var(--black);
+    height: 100%;
+  }

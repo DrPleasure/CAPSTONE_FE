@@ -173,7 +173,7 @@ const [searchPerformed, setSearchPerformed] = useState(false);
 
     </div>
         
-        <div className="d-flex justify-content-around" id="sliderdiv">
+        <div className="d-flex justify-content-around mb-5" id="sliderdiv">
           <div>
         <button onClick={handleCreateNewEventClick} id="buttoncreate">Create Event</button>
         {showCreateNewEvent && <CreateNewEvent onCloseForm={handleCloseForm} />}
@@ -199,42 +199,61 @@ const [searchPerformed, setSearchPerformed] = useState(false);
 
     <div>
       
-      <Dropdown show={showDropdown} onClick={() => setShowDropdown(!showDropdown)}>
-        <Dropdown.Toggle  id="filterdropdown" >
-          Filter
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-          <Dropdown.Header>Category</Dropdown.Header>
-          <Dropdown.Item
+    <Dropdown show={showDropdown} onClick={() => setShowDropdown(!showDropdown)}>
+  <Dropdown.Toggle id="filterdropdown">
+    Filter
+  </Dropdown.Toggle>
+  <Dropdown.Menu id="dropdownmenu">
+    <div className="container-fluid" >
+      <div className="row">
+        <div className="col-md-6">
+          <Dropdown.Header className="dropdownheader fw-bold fs-4">Category</Dropdown.Header>
+          <hr />
+          {/* <Dropdown.Item
             onClick={() => setSelectedCategories([])}
             className={selectedCategories.length === 0 ? "active-filter" : ""}
           >
-            All Categories
-          </Dropdown.Item>
+            All 
+          </Dropdown.Item> */}
           {["Football", "Badminton", "Tennis", "Padel", "Spikeball", "Basket"].map(category => (
             <Dropdown.Item
               key={category}
               name={category}
               onClick={(e) => { e.stopPropagation(); handleCategoryFilterChange(e); }}
-              className={selectedCategories.includes(category) ? "active-filter" : ""}
+              className={selectedCategories.includes(category) ? "active-filter" : "dropdownitem fs-6"}
             >
               {category}
             </Dropdown.Item>
           ))}
-          <Dropdown.Divider />
-          <Dropdown.Header>Time</Dropdown.Header>
+        </div>
+
+        <div className="col-md-6">
+          <Dropdown.Header className="dropdownheader fw-bold fs-4">Time</Dropdown.Header>
+
+          <hr />
+          {/* <Dropdown.Item
+            onClick={() => setSelectedDays([])}
+            className={selectedDays.length === 0 ? "active-filter" : ""}
+          >
+            All Time
+          </Dropdown.Item> */}
           {["Today", "Tomorrow", "This Week", "Next Week"].map(time => (
             <Dropdown.Item
               key={time}
               name={time}
               onClick={(e) => { e.stopPropagation(); handleDayFilterChange(e); }}
-              className={selectedDays.includes(time) ? "active-filter" : ""}
+              className={selectedDays.includes(time) ? "active-filter" : "dropdownitem fs-6"}
             >
               {time}
             </Dropdown.Item>
           ))}
-        </Dropdown.Menu>
-      </Dropdown>
+        </div>
+      </div>
+    </div>
+
+  </Dropdown.Menu>
+</Dropdown>
+
     </div>
   </div>
   <Row xs={1} md={3} lg={4} className="g-4">
