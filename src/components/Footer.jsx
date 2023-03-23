@@ -22,7 +22,7 @@ export default function Footer() {
             <a href="facebook" class="fa fa-facebook"></a>
             <a href="instagram" class="fa fa-instagram"></a>
             <a href="linkedin" class="fa fa-linkedin"></a>
-            <a href="google" class="fa fa-"></a>
+            <a href="google" class="fa fa-google"></a>
             <a href="github" class="fa fa-github"></a>
             </div>
 
@@ -46,10 +46,10 @@ export default function Footer() {
               </MDBCol>
 
               <MDBCol size="auto">
-                <MDBBtn outline color='light' type='submit' className='mb-4' id='subbutton'>
+                <button   className='mb-4' id='subbutton'>
                   Subscribe
-                </MDBBtn>
-              </MDBCol>
+                  </button>              
+                  </MDBCol>
             </MDBRow>
           </form>
         </section>

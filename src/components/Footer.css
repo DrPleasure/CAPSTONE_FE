@@ -69,5 +69,8 @@
 }
 
  #subbutton {
-  border: 1px solid var(--yellow)
+  border: 1px solid var(--yellow);
+  background-color: var(--black);
+  color: var(--white);
+  border-radius: 8%;
  }

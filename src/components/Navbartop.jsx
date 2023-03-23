@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import "./Navbartop.css";
 
 export default function Navbartop() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   const handleDarkModeToggle = () => {
     setDarkMode(!darkMode);

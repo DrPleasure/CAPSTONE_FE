@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import CreateNewEvent from "./CreateNewEvent";
 import Card from "react-bootstrap/Card";
@@ -10,6 +10,7 @@ import GoogleMapReact from 'google-map-react';
 import SingleEvent from "./SingleEvent"
 import Dropdown from 'react-bootstrap/Dropdown';
 import "./Events.css"
+import { motion } from "framer-motion"
 
 
 
@@ -23,6 +24,10 @@ export default function Events() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [sliderValue, setSliderValue] = useState(3);
   const [maxDistance, setMaxDistance] = useState(Infinity);
+  const [selectedId, setSelectedId] = useState(null);
+const [canDrag, setCanDrag] = useState(false);
+const containerRefs = useRef({});
+
 
 
 
@@ -105,6 +110,22 @@ export default function Events() {
 
   const handleCloseForm = () => {
     setShowCreateNewEvent(false);
+  };
+  
+  const handlePanEnd = (e, info, eventId) => {
+    if (selectedId) {
+      if (Math.abs(info.offset.x) < 5) {
+        const styles = getComputedStyle(containerRefs.current[eventId]);
+        const timeout = styles.transform.split(',')[4] * -0.6;
+        setCanDrag(false);
+        setTimeout(() => {
+          setSelectedId(null);
+        }, timeout);
+      }
+    } else {
+      setCanDrag(true);
+      setSelectedId(eventId);
+    }
   };
   
 

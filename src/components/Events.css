@@ -27,11 +27,12 @@
     background-color: var(--grey);
     color: var(--white);
     height: 500px;
-    box-shadow: 4px 4px 6px rgba(255, 255, 0, 0.5);
     transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 1px solid var(--yellow)
   }
   
-  #eventcard:hover {
+ 
+ #eventcard:hover {
     transform: scale(1.05); /* Slightly enlarges the card */
     background-color: var(--light-grey); /* Changes background color to a lighter shade */
     box-shadow: 2px 2px 8px rgba(255, 255, 0, 0.7); /* Enhances the box shadow */
@@ -65,3 +66,5 @@
   #sliderdiv {
     margin-top: 3rem;
   }
+
+ 
