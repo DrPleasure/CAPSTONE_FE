@@ -24,7 +24,7 @@
   }
 
   #eventcard {
-    background-color: var(--grey);
+    background-color: var(--black);
     color: var(--white);
     height: 500px;
     transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;

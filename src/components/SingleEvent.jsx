@@ -3,6 +3,7 @@ import axios from "axios";
 import CommentSection from "./CommentSection";
 import MessagePopup from "./MessagePopup";
 import EditEventModal from './EditEventModal';
+import Navbartop from "./Navbartop"
 
 import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
@@ -201,8 +202,10 @@ const handleReminderChange = async (e) => {
 // ... (imports and other parts of the code)
 
 return (
+
+  
   <div className="container mt-3" id="content">
-    
+    <Navbartop></Navbartop>
     <MDBRow className="d-flex">
      
       <MDBCol>
@@ -292,7 +295,7 @@ return (
 
     <h1 className="text-start mx-5 fw-bold">{event.title}</h1>
 
-<div className="d-flex">
+<div className="d-flex" id="eventinfo">
     <div className="event-info mt-5 col-10">
       <h2>Event Information</h2>
       <p>Lets play <strong>{event.category}!</strong></p>

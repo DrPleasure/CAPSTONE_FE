@@ -1,7 +1,7 @@
-#content {
+/* #content {
     background-color: var(--grey);
     opacity: 0.9
-}
+} */
 
 .attendees-section {
     color: var(--white);
@@ -47,3 +47,6 @@
     border-radius:5%;
   }
   
+  #eventinfo {
+    color: var(--white)
+  }

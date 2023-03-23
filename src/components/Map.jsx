@@ -57,6 +57,9 @@ export default function Map({ locations, setFilteredEvents, props, eventDistance
   })
   .sort((a, b) => a.distance - b.distance);
 
+  setEventDistances(sorted);
+
+
 setFilteredEvents(sorted);
     } else {
       console.log('No results found.');

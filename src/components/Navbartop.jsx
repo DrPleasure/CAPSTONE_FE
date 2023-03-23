@@ -18,7 +18,8 @@ export default function Navbartop() {
 
   return (
     <div id='navbro'>
-      <Navbar bg={darkMode ? 'dark' : 'light'} variant={darkMode ? 'dark' : 'light'}>
+      <Navbar > 
+      {/* <Navbar bg={darkMode ? 'dark' : 'light'} variant={darkMode ? 'dark' : 'light'}> */}
         <Container className='d-flex justify-content-between'>
           <Navbar.Brand href="/">
             <img 
@@ -32,16 +33,19 @@ export default function Navbartop() {
           <Link to='/myprofile'>
             <MyProfileHome/>
           </Link>
-          <button
+          {/* <button
             type="button"
             className="btn btn-link"
             onClick={handleDarkModeToggle}
             style={{ color: darkMode ? "white" : "black" }}
           >
             {darkMode ? <FaSun /> : <FaMoon />}
-          </button>
+          </button> */}
+          
         </Container>
       </Navbar>
+      <hr id='hline' className='mb-4'></hr>
+
     </div>
   )
 }

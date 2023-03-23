@@ -230,7 +230,7 @@ const containerRefs = useRef({});
       </Dropdown>
     </div>
   </div>
-  <Row xs={1} md={2} lg={3} className="g-4">
+  <Row xs={1} md={3} lg={4} className="g-4">
   {filteredEvents
     .sort((a, b) => a.distance - b.distance)
     .map((event) => (
