@@ -70,7 +70,7 @@
   
   .card-img {
     object-fit: cover;
-    max-height: 200px; /* Adjust this value based on your desired image height */
+    height: 200px; /* Adjust this value based on your desired image height */
   }
   
   .range {

@@ -46,6 +46,7 @@ export default function EditProfilePopup({ show, onHide, user, setUser }) {
               type="text"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
+              placeholder={user.firstName}
             />
           </Form.Group>
           <Form.Group controlId="lastName">
@@ -54,6 +55,8 @@ export default function EditProfilePopup({ show, onHide, user, setUser }) {
               type="text"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
+              placeholder={user.lastName}
+
             />
           </Form.Group>    
           <Form.Group controlId="avatar">
@@ -62,6 +65,8 @@ export default function EditProfilePopup({ show, onHide, user, setUser }) {
               type="text"
               value={avatar}
               onChange={(e) => setAvatar(e.target.value)}
+              placeholder={user.avatar}
+
             />
           </Form.Group>
           <Form.Group controlId="city">
@@ -70,6 +75,8 @@ export default function EditProfilePopup({ show, onHide, user, setUser }) {
               type="text"
               value={city}
               onChange={(e) => setCity(e.target.value)}
+              placeholder={user.city}
+
             />
           </Form.Group>
         </Form>

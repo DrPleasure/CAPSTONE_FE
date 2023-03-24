@@ -1,0 +1,5 @@
+#signinbutton {
+    border: 1px solid var(--yellow);
+    background-color: var(--black);
+    color: var(--white)
+}

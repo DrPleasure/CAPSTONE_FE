@@ -192,7 +192,7 @@ const [searchPerformed, setSearchPerformed] = useState(false);
       onInput={handleSliderChange}
     />
     <label className="text-center fw-bold fs-5">
-      Display events within:{sliderValue} km
+      Display events within: {sliderValue} km
     </label>
   </div>
 )}

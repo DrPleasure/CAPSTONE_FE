@@ -17,7 +17,7 @@ export default function Footer() {
       <section className='mb-4'>
     
         
-<div className="d-flex justify-content-around" id='icons'>
+<div className="d-flex justify-content-around mt-5 mb-5" id='icons'>
             <a href="twitter" class="fa fa-twitter"></a>
             <a href="facebook" class="fa fa-facebook"></a>
             <a href="instagram" class="fa fa-instagram"></a>
