@@ -20,8 +20,9 @@ export default function MyProfileHome() {
 
   return (
     <div className='home-user-info d-flex yellowtext'>
+      <p className='mx-2 my-2 fw-bold'> {user.firstName}</p> 
        <img src={user.avatar} className="profile-avatar" ></img>
-       <p className='mx-2'> {user.firstName}</p> 
+       
        
     </div>
   );

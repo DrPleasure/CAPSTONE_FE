@@ -27,10 +27,10 @@ export default function Navbartop() {
               src={image}
               width="40"
               height="40"
-              className="d-inline-block align-top NavbarLogo"
+              className="d-inline-block align-top NavbarLogo rounded"
             />{' '}
           </Navbar.Brand>
-          <Link to='/myprofile'>
+          <Link to='/profile'>
             <MyProfileHome/>
           </Link>
           {/* <button

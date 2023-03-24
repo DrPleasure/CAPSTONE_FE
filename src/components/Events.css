@@ -1,6 +1,8 @@
 .active-filter {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--black);
+    color: var(--yellow);
+    font-weight: bold;
+    font-size: 18px
   }
 
   #buttoncreate {
@@ -89,3 +91,12 @@
     background-color: var(--black);
     height: 100%;
   }
+
+  .dropdown-toggle:focus {
+    box-shadow: none;
+    outline: none;
+  }
+  .dropdown-item.active-filter {
+    background-color: transparent !important;
+  }
+  

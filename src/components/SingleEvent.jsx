@@ -180,6 +180,7 @@ const handleReminderChange = async (e) => {
       );
       setEvent((prevEvent) => ({ ...prevEvent, comments: data }));
       setComment("");
+      console.log("Comment Data:", data)
     } catch (error) {
       console.error(error);
     }

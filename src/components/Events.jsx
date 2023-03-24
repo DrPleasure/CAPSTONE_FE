@@ -22,7 +22,7 @@ export default function Events() {
   const [selectedDays, setSelectedDays] = useState([]);
   const [locations, setLocations] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [sliderValue, setSliderValue] = useState(3);
+  const [sliderValue, setSliderValue] = useState(5);
   const [maxDistance, setMaxDistance] = useState(Infinity);
   const [selectedId, setSelectedId] = useState(null);
 const [canDrag, setCanDrag] = useState(false);
@@ -103,13 +103,14 @@ const [searchPerformed, setSearchPerformed] = useState(false);
   
 
   const handleDayFilterChange = (event) => {
-    const day = event.target.name;
-    if (selectedDays.includes(day)) {
-      setSelectedDays(selectedDays.filter((selectedDay) => selectedDay !== day));
+    const time = event.target.name;
+    if (selectedDays.includes(time)) {
+      setSelectedDays(selectedDays.filter((selectedTime) => selectedTime !== time));
     } else {
-      setSelectedDays([...selectedDays, day]);
+      setSelectedDays([...selectedDays, time]);
     }
   };
+  
 
   const handleCloseForm = () => {
     setShowCreateNewEvent(false);
@@ -150,8 +151,27 @@ const [searchPerformed, setSearchPerformed] = useState(false);
     let dayMatch = true;
     if (selectedDays.length > 0) {
       const eventDate = new Date(event.date);
-      const eventDay = eventDate.toLocaleString("default", { weekday: "long" });
-      dayMatch = selectedDays.includes(eventDay);
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(today.getDate() + 1);
+      const nextWeek = new Date(today);
+      nextWeek.setDate(today.getDate() + 7);
+  
+      dayMatch = selectedDays.some((selectedDay) => {
+        if (selectedDay === "Today" && eventDate.toDateString() === today.toDateString()) {
+          return true;
+        }
+        if (selectedDay === "Tomorrow" && eventDate.toDateString() === tomorrow.toDateString()) {
+          return true;
+        }
+        if (selectedDay === "This Week" && eventDate >= today && eventDate < nextWeek) {
+          return true;
+        }
+        if (selectedDay === "Next Week" && eventDate >= nextWeek && eventDate < nextWeek * 2) {
+          return true;
+        }
+        return false;
+      });
     }
   
     let distanceMatch = true;
@@ -161,6 +181,7 @@ const [searchPerformed, setSearchPerformed] = useState(false);
   
     return categoryMatch && dayMatch && distanceMatch;
   });
+  
   
 
   return (
@@ -187,6 +208,7 @@ const [searchPerformed, setSearchPerformed] = useState(false);
       min="0.1"
       max="10"
       step="0.1"
+  
       value={sliderValue}
       onChange={handleSliderChange}
       onInput={handleSliderChange}
