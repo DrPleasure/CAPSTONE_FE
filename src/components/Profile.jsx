@@ -50,7 +50,7 @@ export default function MyProfile() {
     setUser={setUser}
   />
                     </div>
-                    <div className="ms-3 mt-4 ">
+                    <div className="mx-5 mt-4 ">
                       <MDBTypography className='userinfo'>{user.firstName} {user.lastName}</MDBTypography>
                       <MDBCardText>{user.city}</MDBCardText>
                     </div>
