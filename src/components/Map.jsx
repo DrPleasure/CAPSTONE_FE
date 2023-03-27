@@ -148,7 +148,7 @@ setFilteredEvents(sorted);
       </div>
       <div className='mt-5 d-flex justify-content-center'>
         <label className='fs-5 fw-bold'>
-          Calculate distance:
+          Calculate distances:
           <input type="text" className='mx-3' value={searchLocation} onChange={(e) => setSearchLocation(e.target.value)} />
         </label>
         <button onClick={handleSearchLocation} id="buttonsearch">Search</button>

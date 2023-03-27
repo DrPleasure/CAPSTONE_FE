@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import EditProfilePopup from './EditProfilePopup';
+import { useParams } from 'react-router-dom';
 
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography } from 'mdb-react-ui-kit';
 import "./MyProfile.css"
@@ -11,6 +12,8 @@ export default function MyProfile() {
     const [user, setUser] = useState({});
     const [showEditProfilePopup, setShowEditProfilePopup] = useState(false);
 
+    const { id } = useParams();
+
 
     useEffect(() => {
       const accessToken = localStorage.getItem('accessToken');
@@ -18,13 +21,16 @@ export default function MyProfile() {
         const config = {
           headers: { Authorization: `Bearer ${accessToken}` }
         };
-        const { data } = await axios.get("http://localhost:3001/users/me", config);
+        const { data } = await axios.get(`http://localhost:3001/users/${id}`, config);
         setUser(data);
         console.log("User Data:", data);
       };
       fetchUser();
-    }, []);
+    }, [id]);
   
+
+
+    
     return (
         <div >
           <MDBContainer className="py-5 h-100" >
@@ -34,14 +40,9 @@ export default function MyProfile() {
                   <div className="rounded-top text-white d-flex flex-row">
                     <div className="ms-3 mt-1 d-flex flex-column" style={{ width: '150px' }}>
                       <MDBCardImage src={user.avatar}
-                        alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail" fluid style={{ width: '150px', zIndex: '1' }} />
+                        alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail" id='avatar' />
 
-                      <MDBBtn rounded id='editprofilebutton'
-    style={{ height: '36px', overflow: 'visible' }}
-    onClick={() => setShowEditProfilePopup(true)}
-  >
-    Edit profile
-  </MDBBtn>
+
   <EditProfilePopup
     show={showEditProfilePopup}
     onHide={() => setShowEditProfilePopup(false)}
@@ -79,7 +80,7 @@ export default function MyProfile() {
                     <div className="d-flex justify-content-between align-items-center mb-4">
                       <MDBCardText className="lead fw-normal mb-0">Recent Events Attended</MDBCardText>
                     </div>
-                    <MDBRow>
+                    <MDBRow className='mb-2'>
                       <MDBCol className="mb-2">
                         <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
                           alt="image 1" className="w-100 rounded-3" />
@@ -89,7 +90,7 @@ export default function MyProfile() {
                           alt="image 1" className="w-100 rounded-3" />
                       </MDBCol>
                     </MDBRow>
-                    <MDBRow className="g-2">
+                    <MDBRow className="mb-2">
                       <MDBCol className="mb-2">
                         <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp"
                           alt="image 1" className="w-100 rounded-3" />

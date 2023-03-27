@@ -5,7 +5,7 @@ import MessagePopup from "./MessagePopup";
 import EditEventModal from './EditEventModal';
 import Navbartop from "./Navbartop"
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import { FaFacebookMessenger } from "react-icons/fa";
 import {
@@ -180,7 +180,6 @@ const handleReminderChange = async (e) => {
       );
       setEvent((prevEvent) => ({ ...prevEvent, comments: data }));
       setComment("");
-      console.log("Comment Data:", data)
     } catch (error) {
       console.error(error);
     }
@@ -219,19 +218,19 @@ return (
   <div className="attendees-section col-2">
     <h2 className="text-center mb-4 fw-bold">Attendees ({event.attendees.length})</h2>
     <div className="d-flex justify-content-center flex-wrap">
-      {event.attendees.map((attendee) => (
-        <div key={attendee._id} className="attendee-card p-2  d-flex ">
-          <MDBCardImage
-            className="rounded-circle shadow-1-strong mb-2"
-            src={attendee.avatar}
-            alt="avatar"
-            width="60"
-            height="60"
-          />
-          <span className="d-block">{attendee.firstName}</span>
-        </div>
-      ))}
-    </div>
+  {event.attendees.map((attendee) => (
+    <Link key={attendee._id} to={`/profile/${attendee._id}`} className="attendee-card p-2  d-flex">
+      <MDBCardImage
+        className="rounded-circle shadow-1-strong mb-2"
+        src={attendee.avatar}
+        alt="avatar"
+        width="60"
+        height="60"
+      />
+      <span className="d-block">{attendee.firstName}</span>
+    </Link>
+  ))}
+</div>
   </div>
 </MDBCol>
 

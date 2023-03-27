@@ -286,7 +286,7 @@ const [searchPerformed, setSearchPerformed] = useState(false);
         <Link className="event-card-link" to={{ pathname: `/events/${event._id}`, state: { event } }}>
           <div>
             <Card id="eventcard" className="fs-6 mb-4 text-center">
-              <Card.Img variant="top" src={event.image} alt="eventimage" className="card-img" />
+              <Card.Img variant="top" src={event.image} alt="eventimage" className="card-img p-2" />
               <Card.Body>
                 <Card.Title className="yellowtext fw-bold fs-4 text-center">{event.title}</Card.Title>
                 <Card.Text>

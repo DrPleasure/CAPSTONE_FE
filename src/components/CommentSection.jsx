@@ -6,6 +6,7 @@ import Avatar from "react-avatar";
 import axios from "axios";
 import { MDBCardImage } from "mdb-react-ui-kit";
 import jwt_decode from "jwt-decode";
+import { Link } from "react-router-dom";
 
 import "./CommentSection.css"; 
 
@@ -48,18 +49,20 @@ export default function CommentSection({ eventId, comments, setEvent }) {
     return (
       <div key={comment._id} style={{ marginLeft: level * 20 }} >
         <div className="d-flex flex-start">
-          <MDBCardImage
-            className="rounded-circle shadow-1-strong me-3"
-            src={comment.user.avatar}
-            alt="avatar"
-            width="65"
-            height="65"
-          />
+        <Link to={`/profile/${comment.user._id}`}>
+  <MDBCardImage
+    className="rounded-circle shadow-1-strong me-3"
+    src={comment.user.avatar}
+    alt="avatar"
+    width="65"
+    height="65"
+  />
+</Link>
           <div className="flex-grow-1 flex-shrink-1">
             <div>
-              <div className="d-flex justify-content-between align-items-center">
+              <div className="d-flex justify-content-between align-items-center mt-2 fw-bold" id="singlecommentuser">
                 <p className={commentClass}>
-                  {comment.user.firstName} {comment.user.lastName}{" "}
+                  {comment.user.firstName} {" "}
                 </p>
                 {level === 0 && (
                 <a href="#!" onClick={() => setParentComment(comment._id)}>
@@ -68,7 +71,7 @@ export default function CommentSection({ eventId, comments, setEvent }) {
                 </a>
               )}
               </div>
-              <p className="small mb-0">{comment.text}</p>
+              <p className="small mb-1" id="comment-text">{comment.text}</p>
             </div>
             {parentComment === comment._id && (
               <Form onSubmit={(event) => handleReply(event, comment._id)}>

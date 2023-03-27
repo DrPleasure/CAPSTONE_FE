@@ -89,7 +89,7 @@ export default function MyProfile() {
                           alt="image 1" className="w-100 rounded-3" />
                       </MDBCol>
                     </MDBRow>
-                    <MDBRow className="g-2">
+                    <MDBRow className="mb-2">
                       <MDBCol className="mb-2">
                         <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp"
                           alt="image 1" className="w-100 rounded-3" />

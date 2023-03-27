@@ -1,4 +1,14 @@
 .current-user-comment {
-    background-color: #8dde72; /* Replace with your desired background color */
+    color: var(--yellow); /* Replace with your desired background color */
+    font-weight: bold;
+    
   }
   
+
+  #singlecommentuser {
+    color: var(--white)
+  }
+
+  #comment-text {
+    color: var(--white);
+  }

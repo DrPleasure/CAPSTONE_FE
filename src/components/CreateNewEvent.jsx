@@ -154,7 +154,7 @@ export default function CreateNewEvent({onCloseForm}) {
             name="minPlayers"
             value={eventData.minPlayers}
             onChange={handleChange}
-            required
+            placeholder="Not required"
           />
         </div>
 
@@ -167,7 +167,7 @@ export default function CreateNewEvent({onCloseForm}) {
             name="maxPlayers"
             value={eventData.maxPlayers}
             onChange={handleChange}
-            required
+            placeholder="Not required"
           />
         </div>
         <button  className="btn  my-2 fw-bolder" id='buttoner'>
