@@ -293,10 +293,10 @@ return (
      
     </MDBRow>
 
-    <h1 className="text-start mx-5 fw-bold">{event.title}</h1>
+    <h1 className="text-start fw-bold">{event.title}</h1>
 
 <div className="d-flex justify-content-between" id="eventinfo">
-    <div className="event-info mt-5">
+    <div className="event-info mt-5 fs-4">
       <h2>Event Information</h2>
       <p>Lets play <strong>{event.category}!</strong></p>
       <p>{event.description}</p>
