@@ -16,7 +16,7 @@ const AboutMe = () => {
              transition={{
                 duration: 5,
                 delay: 0.8,
-                ease: [0.5, 0.71, 1, 1.5],
+                ease: [0.2, 0.51, 1, 1.5],
                 
             }}
            
@@ -34,8 +34,8 @@ const AboutMe = () => {
             <motion.h1 className="h1 mt-5"
             initial={{ y: -200 }}
             animate={{ y: 0 }}
-             transition={{ type: "spring", stiffness: 120, delay: 2 }}
-            whileHover={{ scale: 1.4 }}
+             transition={{ type: "spring", stiffness: 120, delay: 1 }}
+            whileHover={{ scale: 1.4, delay: 0 }}
           >
             Olaf Glad
           </motion.h1>
@@ -46,7 +46,7 @@ const AboutMe = () => {
           exit={{ opacity: 0 }}
         >
       
-          <motion.p className="p my-5"
+          <motion.p className="p my-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 3 }}
