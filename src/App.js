@@ -7,6 +7,7 @@ import Register from './components/Register';
 import SingleEvent from './components/SingleEvent';
 import MyProfile from './components/MyProfile';
 import Profile from "./components/Profile.jsx"
+import AboutMe from './components/AboutMe';
 
 // add weather forecast??
 
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/events/:id" element={<SingleEvent/>} />
         <Route exact path="/profile" element={<MyProfile/>} />
         <Route exact path="/profile/:id" element={<Profile/>} />
+        <Route exact path="/about" element={<AboutMe/>} />
 
       </Routes>
     </Router>

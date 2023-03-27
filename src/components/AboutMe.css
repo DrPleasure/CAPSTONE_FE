@@ -1,0 +1,77 @@
+.div {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem;
+  }
+  
+  .h1 {
+    font-size: 4rem;
+  
+    font-weight: bold;
+    margin-left: 18%;
+  }
+  
+  .h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    font-weight: bold;
+    margin-left: 7%;
+
+  }
+  
+  .p {
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+    color: white;
+  }  
+  
+  .p1 {
+    font-size: 2rem;
+    line-height: 2.5rem;
+    color: yellow;
+  }  
+  
+  .p2 {
+    font-size: 2rem;
+    line-height: 2.5rem;
+    color: white;
+  }
+
+  #avatar {
+    width: 400px;
+    margin-left: 20%; 
+    margin-top: 20%;
+    border-radius: 20%;
+  }
+
+  svg {
+    margin-right: 1rem;
+  }
+
+  .icon {
+    font-size: 36px;
+    color: var(--yellow);
+    margin-left: 10%;
+  }
+
+  .gradient-text {
+
+        background: linear-gradient(to bottom right, var(--yellow), var(--white));
+        -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent; 
+      
+  }  
+  
+  .gradient-text2 {
+
+        background: linear-gradient(to bottom right, var(--white), var(--yellow));
+        -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent; 
+      
+  }
+
+  .thankyou {
+    font-size: 48px;
+    color: var(--white);
+    
+  }
