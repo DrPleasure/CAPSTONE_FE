@@ -75,3 +75,9 @@
     color: var(--white);
     
   }
+
+  #chess {
+    width:300px;
+    aspect-ratio: 1/1;
+    border-radius: 10%;
+  }
