@@ -296,7 +296,7 @@ return (
     <h1 className="text-start fw-bold">{event.title}</h1>
 
 <div className="d-flex justify-content-between" id="eventinfo">
-    <div className="event-info mt-5 fs-4">
+    <div className="event-info mt-5 fs-3">
       <h2>Event Information</h2>
       <p>Lets play <strong>{event.category}!</strong></p>
       <p>{event.description}</p>
@@ -310,28 +310,7 @@ return (
           {userId === event.createdBy._id && (
   <div className="mt-3">
     
- 
-  </div>
-)}
-  
-    </div>
-    <div className="buttons d-flex flex-column justify-content-around mx-1">
-    <label htmlFor="reminder-checkbox" className="form-check-label my-3 mx-4">
-  Set Reminder
-  <input
-  type="checkbox"
-  id="reminder-checkbox"
-  checked={reminderSet}
-  onChange={handleReminderChange}
-  className="form-check-input mx-3"
-/>
-</label>
-
-
-      <Button onClick={handleAttendEvent} className="button-box">
-            {isAttending ? "Unattend Event" : "Attend Event"}
-          </Button>
-          <Button className="button-box" onClick={() => setIsEditModalVisible(true)}>Edit Event</Button>
+    <Button className="button-box" onClick={() => setIsEditModalVisible(true)}>Edit Event</Button>
 
 {isEditModalVisible && (
   <EditEventModal
@@ -343,6 +322,31 @@ return (
     <Button onClick={handleDeleteEvent} className="button-box my-3"  >
       Delete Event
     </Button>
+  </div>
+)}
+  
+    </div>
+    <div className=" d-flex flex-column justify-content-center mb-5">
+
+
+
+      <Button onClick={handleAttendEvent} className="button-box">
+            {isAttending ? "Unattend Event" : "Attend Event"}
+          </Button>
+          <label htmlFor="reminder-checkbox" className="form-check-label my-3 mx-4">
+  Set Reminder
+  
+  <input
+  type="checkbox"
+  id="reminder-checkbox"
+  checked={reminderSet}
+  onChange={handleReminderChange}
+  className="form-check-input mx-3"
+  
+/>
+<br></br> Receive an email on the morning of the event
+</label>
+         
     </div>
     <div className="">
           <p className="text-center fs-4" id="sharetext">Share Event!</p>

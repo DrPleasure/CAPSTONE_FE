@@ -59,6 +59,7 @@
     border: 1px solid var(--yellow)
   }
 
-  .buttons {
-    border: 1px solid white
-  }
+ .reminderbox {
+  font-size: 18px
+ }
+  
