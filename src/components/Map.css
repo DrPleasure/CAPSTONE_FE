@@ -16,3 +16,9 @@ label {
     border-radius: 1%;
 }
 
+#infowindow {
+    background-color: var(--black);
+    color: var(--white);
+    font-size: 15px;
+    
+}

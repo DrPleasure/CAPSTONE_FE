@@ -2,13 +2,15 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
 import "./Map.css"
+import basketballicon from "../assets/basketball.jpg"
+import footballicon from "../assets/ball.png"
 
 const containerStyle = {
   width: '100%',
   height: '400px',
 };
 
-export default function Map({ locations, setFilteredEvents, props, eventDistances, setEventDistances, setSearchPerformed }) {
+export default function Map({ locations, setFilteredEvents, props, eventDistances, setEventDistances, setSearchPerformed, filteredEvents }) {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [searchLocation, setSearchLocation] = useState('');
@@ -17,6 +19,37 @@ export default function Map({ locations, setFilteredEvents, props, eventDistance
     lat: 55.6761,
     lng: 12.5683,
   });
+
+  const icons = {
+    Basket: {
+      url: require("../assets/basketball.png"),
+      scaledSize: new window.google.maps.Size(50, 50),
+    },
+    Padel: {
+      url: require("../assets/padel.png"),
+      scaledSize: new window.google.maps.Size(50, 50),
+    },
+    Football: {
+      url: require("../assets/football.png"),
+      scaledSize: new window.google.maps.Size(50, 50),
+    },
+    Tennis: {
+      url: require("../assets/tennis.png"),
+      scaledSize: new window.google.maps.Size(50, 50),
+    },  
+    Badminton: {
+      url: require("../assets/badminton.png"),
+      scaledSize: new window.google.maps.Size(50, 50),
+    },  
+    Spikeball: {
+      url: require("../assets/spikeball.png"),
+      scaledSize: new window.google.maps.Size(50, 50),
+    },
+  };
+  
+
+  
+  
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -57,11 +90,10 @@ export default function Map({ locations, setFilteredEvents, props, eventDistance
   })
   .sort((a, b) => a.distance - b.distance);
 
-  setEventDistances(sorted);
+  filteredEvents(sorted);
   setSearchPerformed(true); // Update the searchPerformed state
 
 
-setFilteredEvents(sorted);
     } else {
       console.log('No results found.');
     }
@@ -118,17 +150,19 @@ setFilteredEvents(sorted);
           }}
         >
           {sortedEvents.map((event) => (
-            <Marker
-              key={event._id}
-              position={{ lat: event.latitude, lng: event.longitude }}
-              onClick={() => handleMarkerClick(event)}
-            >
+          <Marker
+          key={event._id}
+          position={{ lat: event.latitude, lng: event.longitude }}
+  icon={icons[event.category]} // set the `icon` property to your custom icon object
+          onClick={() => handleMarkerClick(event)}
+        >
+        
               {selectedEvent === event ? (
-                <InfoWindow
+                <InfoWindow 
                   anchor={selectedEvent && selectedEvent.anchor}
                   onCloseClick={handleInfoWindowClose}
                 >
-                  <div>
+                  <div id="infowindow">
                     <h3>{event.title}</h3>
                     <h5>{event.category}</h5>
                     <p>{formatDate(event.date)}</p>
@@ -136,7 +170,7 @@ setFilteredEvents(sorted);
                       <img src={event.image} alt={event.title} style={{ maxWidth: '200px' }} />
                     )}
                     <p>{event.description}</p>
-                    <p>Distance: {event.distance} km</p>
+                    {/* <p>Distance: {event.distance} km</p> */}
                   </div>
                 </InfoWindow>
               ) : null}
