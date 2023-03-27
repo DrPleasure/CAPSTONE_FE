@@ -7,7 +7,7 @@ import footballicon from "../assets/ball.png"
 
 const containerStyle = {
   width: '100%',
-  height: '400px',
+  height: '500px',
 };
 
 export default function Map({ locations, setFilteredEvents, props, eventDistances, setEventDistances, setSearchPerformed, filteredEvents }) {
@@ -90,10 +90,9 @@ export default function Map({ locations, setFilteredEvents, props, eventDistance
   })
   .sort((a, b) => a.distance - b.distance);
 
-  filteredEvents(sorted);
   setSearchPerformed(true); // Update the searchPerformed state
 
-
+  setFilteredEvents(sorted);
     } else {
       console.log('No results found.');
     }
