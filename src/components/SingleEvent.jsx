@@ -295,8 +295,8 @@ return (
 
     <h1 className="text-start mx-5 fw-bold">{event.title}</h1>
 
-<div className="d-flex" id="eventinfo">
-    <div className="event-info mt-5 col-10">
+<div className="d-flex justify-content-between" id="eventinfo">
+    <div className="event-info mt-5">
       <h2>Event Information</h2>
       <p>Lets play <strong>{event.category}!</strong></p>
       <p>{event.description}</p>
@@ -306,23 +306,32 @@ return (
       <p>
       <strong>Date & Time:</strong> {formatDate(event.date)}
       </p>
-      <label htmlFor="reminder-checkbox" className="form-check-label">
+
+          {userId === event.createdBy._id && (
+  <div className="mt-3">
+    
+ 
+  </div>
+)}
+  
+    </div>
+    <div className="buttons d-flex flex-column justify-content-around mx-1">
+    <label htmlFor="reminder-checkbox" className="form-check-label my-3 mx-4">
   Set Reminder
-</label>
-<input
+  <input
   type="checkbox"
   id="reminder-checkbox"
   checked={reminderSet}
   onChange={handleReminderChange}
-  className="form-check-input"
+  className="form-check-input mx-3"
 />
+</label>
 
-      <Button onClick={handleAttendEvent} id="attend-button">
+
+      <Button onClick={handleAttendEvent} className="button-box">
             {isAttending ? "Unattend Event" : "Attend Event"}
           </Button>
-          {userId === event.createdBy._id && (
-  <div className="mt-3">
-    <button onClick={() => setIsEditModalVisible(true)}>Edit Event</button>
+          <Button className="button-box" onClick={() => setIsEditModalVisible(true)}>Edit Event</Button>
 
 {isEditModalVisible && (
   <EditEventModal
@@ -331,15 +340,11 @@ return (
     onEventUpdated={handleEventUpdated}
   />
 )}
-    <Button onClick={handleDeleteEvent}  >
+    <Button onClick={handleDeleteEvent} className="button-box my-3"  >
       Delete Event
     </Button>
- 
-  </div>
-)}
-  
     </div>
-    <div className="col-2">
+    <div className="">
           <p className="text-center fs-4" id="sharetext">Share Event!</p>
           <div className="d-flex flex-column">
           <FacebookShareButton url={shareUrl} quote={title}>

@@ -4,6 +4,7 @@ import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
 import "./Map.css"
 import basketballicon from "../assets/basketball.jpg"
 import footballicon from "../assets/ball.png"
+import { Link } from 'react-router-dom';
 
 const containerStyle = {
   width: '100%',
@@ -168,8 +169,10 @@ export default function Map({ locations, setFilteredEvents, props, eventDistance
                     {event.image && (
                       <img src={event.image} alt={event.title} style={{ maxWidth: '200px' }} />
                     )}
-                    <p>{event.description}</p>
+                    <p className='fs-4 fw-bold'>{event.description}</p>
                     {/* <p>Distance: {event.distance} km</p> */}
+                    <Link to={`/events/${event._id}`}> <button id='buttonview'>View Event</button></Link>
+
                   </div>
                 </InfoWindow>
               ) : null}

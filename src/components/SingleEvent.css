@@ -50,3 +50,15 @@
   #eventinfo {
     color: var(--white)
   }
+
+  .button-box {
+    width: 70%;
+    margin: auto;
+    color: var(--yellow);
+    background-color: var(--black);
+    border: 1px solid var(--yellow)
+  }
+
+  .buttons {
+    border: 1px solid white
+  }
