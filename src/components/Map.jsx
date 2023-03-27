@@ -28,7 +28,7 @@ export default function Map({ locations, setFilteredEvents, props, eventDistance
     },
     Padel: {
       url: require("../assets/padel.png"),
-      scaledSize: new window.google.maps.Size(50, 50),
+      scaledSize: new window.google.maps.Size(60, 60),
     },
     Football: {
       url: require("../assets/football.png"),
@@ -36,11 +36,11 @@ export default function Map({ locations, setFilteredEvents, props, eventDistance
     },
     Tennis: {
       url: require("../assets/tennis.png"),
-      scaledSize: new window.google.maps.Size(50, 50),
+      scaledSize: new window.google.maps.Size(60, 50),
     },  
     Badminton: {
       url: require("../assets/badminton.png"),
-      scaledSize: new window.google.maps.Size(50, 50),
+      scaledSize: new window.google.maps.Size(60, 60),
     },  
     Spikeball: {
       url: require("../assets/spikeball.png"),
