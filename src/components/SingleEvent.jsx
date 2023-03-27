@@ -227,7 +227,7 @@ return (
         width="60"
         height="60"
       />
-      <span className="d-block">{attendee.firstName}</span>
+      <span id="attendeename">{attendee.firstName}</span>
     </Link>
   ))}
 </div>

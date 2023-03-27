@@ -18,7 +18,7 @@ const AboutMe = () => {
         <>
         <div className="d-flex">
             <div className="col-4">
-                <motion.img id="avatar" src={avatar}
+                <motion.img id="avatar1" src={avatar}
              initial={{ opacity: 0 }}
              animate={{ opacity: 1 }}
              exit={{ opacity: 0 }}
