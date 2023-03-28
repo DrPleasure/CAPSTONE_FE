@@ -23,7 +23,7 @@ const AboutMe = () => {
              animate={{ opacity: 1 }}
              exit={{ opacity: 0 }}
              transition={{
-                duration: 5,
+                duration: 7,
                 delay: 0.8,
                 ease: [0.2, 0.51, 1, 1.5],
                 
@@ -43,7 +43,7 @@ const AboutMe = () => {
             <motion.h1 className="h1 mt-5"
             initial={{ y: -200 }}
             animate={{ y: 0 }}
-             transition={{ type: "spring", stiffness: 120, delay: 1 }}
+             transition={{ type: "spring", stiffness: 120, delay: 0 }}
             whileHover={{ scale: 1.4, delay: 0 }}
           >
             Olaf Glad
