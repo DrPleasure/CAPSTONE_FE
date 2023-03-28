@@ -46,7 +46,7 @@
     color: var(--white);
     height: 500px;
     transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    border: 1px solid var(--yellow);
+     border: 1px solid var(--yellow); 
     overflow: hidden;
   }
   

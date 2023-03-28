@@ -386,7 +386,7 @@ return (
      
       
 
-      <div className="comments-section mt-5">
+      <div className="comments-section my-5">
         <CommentSection
         eventId={event._id}
           comments={event.comments}

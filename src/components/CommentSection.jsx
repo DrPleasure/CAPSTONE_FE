@@ -66,8 +66,7 @@ export default function CommentSection({ eventId, comments, setEvent }) {
                 </p>
                 {level === 0 && (
                 <a href="#!" onClick={() => setParentComment(comment._id)}>
-                  <FaPaperPlane className="me-2" />
-                  <span className="small">Reply</span>
+                  <Button className="small replybutton">Reply</Button>
                 </a>
               )}
               </div>
@@ -84,7 +83,7 @@ export default function CommentSection({ eventId, comments, setEvent }) {
                     onChange={(event) => setReply(event.target.value)}
                   />
                 </Form.Group>
-                <Button type="submit">
+                <Button type="submit" className="replybutton">
                   <FaPaperPlane className="me-2" />
                   Reply
                 </Button>
@@ -124,7 +123,7 @@ export default function CommentSection({ eventId, comments, setEvent }) {
         .map((comment) => renderComment(comment))}
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="new-comment">
-          <Form.Control
+          <Form.Control className="mt-4"
             as="textarea"
             rows={3}
             placeholder="Write a comment..."
@@ -132,7 +131,7 @@ export default function CommentSection({ eventId, comments, setEvent }) {
             onChange={handleCommentChange}
           />
         </Form.Group>
-        <Button type="submit">
+        <Button type="submit" id="commentbutton" className="mt-3">
           <FaPaperPlane /> Comment
         </Button>
       </Form>

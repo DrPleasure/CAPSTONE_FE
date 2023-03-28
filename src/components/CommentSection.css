@@ -12,3 +12,15 @@
   #comment-text {
     color: var(--white);
   }
+
+  #commentbutton {
+    background-color: var(--black);
+    color: var(--yellow);
+    border: 1px solid var(--yellow)
+  }
+
+  .replybutton {
+    background-color: var(--black);
+    color: var(--yellow);
+    border: 1px solid var(--yellow)
+  }
