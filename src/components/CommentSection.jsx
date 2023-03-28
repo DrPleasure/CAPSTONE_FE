@@ -66,7 +66,7 @@ export default function CommentSection({ eventId, comments, setEvent }) {
                 </p>
                 {level === 0 && (
                 <a href="#!" onClick={() => setParentComment(comment._id)}>
-                  <Button className="small replybutton">Reply</Button>
+                  <Button className="small replybutton mt-2">Reply</Button>
                 </a>
               )}
               </div>
@@ -83,7 +83,7 @@ export default function CommentSection({ eventId, comments, setEvent }) {
                     onChange={(event) => setReply(event.target.value)}
                   />
                 </Form.Group>
-                <Button type="submit" className="replybutton">
+                <Button type="submit" className="replybutton mb-3">
                   <FaPaperPlane className="me-2" />
                   Reply
                 </Button>

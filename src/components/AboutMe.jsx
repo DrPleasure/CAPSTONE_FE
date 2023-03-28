@@ -1,7 +1,7 @@
 import { motion, easeInOut, AnimatePresence } from "framer-motion";
 import "./AboutMe.css"
 import avatar from "../assets/avatargithub.jpg"
-import { FiPhone, FiMail } from "react-icons/fi";
+import { FiPhone, FiMail, FiGithub, FiLinkedin } from "react-icons/fi";
 import { useState } from "react";
 
 
@@ -99,13 +99,23 @@ const AboutMe = () => {
     <div className="d-flex flex-column contact col-6">
       <h2 className="h2">Contact Info</h2>
       <div className="d-flex">
-        <FiPhone className="icon" />
-        <p className="p">(+45) 2279-5380</p>
+        <FiGithub className="icon" />
+        <p className="p2">github.com/DrPleasure</p>
       </div>
       <div className="d-flex">
-        <FiMail className="icon" />
-        <p className="p">Olaf.glad.dk@gmail.com</p>
+        <FiLinkedin className="icon mb-2" />
+        <p className="p2">linkedin.com/in/olafglad/</p>
       </div>
+  
+      <div className="d-flex">
+        <FiMail className="icon" />
+        <p className="p2">Olaf.glad.dk@gmail.com</p>
+      </div>
+    
+      <div className="d-flex">
+        <FiPhone className="icon" />
+        <p className="p2">(+45) 2279-5380</p>
+      </div> 
     </div>
     <motion.div
       className="thankyou my-5 gradient-text2"
