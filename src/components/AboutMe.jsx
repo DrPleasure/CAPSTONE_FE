@@ -98,15 +98,15 @@ const AboutMe = () => {
   <div className="d-flex">
     <div className="d-flex flex-column contact col-6">
       <h2 className="h2">Contact Info</h2>
-      <div className="d-flex">
-        <FiGithub className="icon" />
-        <p className="p2">github.com/DrPleasure</p>
-      </div>
+    
       <div className="d-flex">
         <FiLinkedin className="icon mb-2" />
         <p className="p2">linkedin.com/in/olafglad/</p>
       </div>
-  
+      <div className="d-flex">
+        <FiGithub className="icon" />
+        <p className="p2">github.com/DrPleasure</p>
+      </div>
       <div className="d-flex">
         <FiMail className="icon" />
         <p className="p2">Olaf.glad.dk@gmail.com</p>
