@@ -25,7 +25,7 @@ export default function CommentSection({ eventId, comments, setEvent }) {
     const accessToken = localStorage.getItem("accessToken");
     try {
       const { data } = await axios.post(
-        `http://localhost:3001/events/${eventId}/comments`,
+        `https://capstonebe-production.up.railway.app/events/${eventId}/comments`,
         { comment: newComment },
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
@@ -103,7 +103,7 @@ export default function CommentSection({ eventId, comments, setEvent }) {
     const accessToken = localStorage.getItem("accessToken");
     try {
       const { data } = await axios.post(
-        `http://localhost:3001/events/${eventId}/comments`,
+        `https://capstonebe-production.up.railway.app/events/${eventId}/comments`,
         { comment: reply, parentCommentId }, // Add parentCommentId here
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );

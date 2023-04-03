@@ -25,7 +25,7 @@ export default function EditProfilePopup({ show, onHide, user, setUser }) {
     };
 
     try {
-      const { data } = await axios.put('http://localhost:3001/users/me', updatedUser, config);
+      const { data } = await axios.put('https://capstonebe-production.up.railway.app/users/me', updatedUser, config);
       setUser(data);
       onHide();
     } catch (error) {

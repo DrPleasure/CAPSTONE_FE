@@ -24,7 +24,7 @@ const EditEventModal = ({ event, onClose, onEventUpdated }) => {
     try {
       const token = localStorage.getItem('accessToken');
       const response = await axios.put(
-        `http://localhost:3001/events/${event._id}`,
+        `https://capstonebe-production.up.railway.app/events/${event._id}`,
         eventData,
         {
           headers: {

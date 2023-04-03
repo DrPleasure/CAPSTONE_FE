@@ -54,7 +54,7 @@ const Register = () => {
       },
     }
 
-    const fetchURL = 'http://localhost:3001/users/register'
+    const fetchURL = 'https://capstonebe-production.up.railway.app/users/register'
 
     try {
       let response = await fetch(fetchURL, options)

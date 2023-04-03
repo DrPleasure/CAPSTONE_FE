@@ -38,7 +38,7 @@ const [searchPerformed, setSearchPerformed] = useState(false);
 
   useEffect(() => {
     const fetchLocations = async () => {
-      const { data } = await axios.get("http://localhost:3001/events/locations/map");
+      const { data } = await axios.get("https://capstonebe-production.up.railway.app/events/locations/map");
       setLocations(data);
     };
     fetchLocations();
@@ -58,7 +58,7 @@ const [searchPerformed, setSearchPerformed] = useState(false);
         params.days = selectedDays;
       }
 
-      const { data } = await axios.get("http://localhost:3001/events", {
+      const { data } = await axios.get("https://capstonebe-production.up.railway.app/events", {
         params,
       });
       setEvents(data);

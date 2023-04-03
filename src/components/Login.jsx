@@ -43,7 +43,7 @@ const Login = () => {
       }),
     };
   
-    const fetchURL = 'http://localhost:3001/users/login';
+    const fetchURL = 'https://capstonebe-production.up.railway.app/users/login';
   
     try {
       let response = await fetch(fetchURL, options);
@@ -59,7 +59,7 @@ const Login = () => {
           headers: { Authorization: `Bearer ${data.accessToken}` },
         };
         const { data: user } = await axios.get(
-          'http://localhost:3001/users/me',
+          'https://capstonebe-production.up.railway.app/users/me',
           config
         );
   

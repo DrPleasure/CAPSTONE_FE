@@ -11,7 +11,7 @@ export default function MyProfileHome() {
       const config = {
         headers: { Authorization: `Bearer ${accessToken}` }
       };
-      const { data } = await axios.get("http://localhost:3001/users/me", config);
+      const { data } = await axios.get("https://capstonebe-production.up.railway.app/users/me", config);
       setUser(data);
       console.log("User Data:", data);
     };

@@ -54,7 +54,7 @@ export default function Map({ locations, setFilteredEvents, props, eventDistance
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const { data } = await axios.get('http://localhost:3001/events');
+      const { data } = await axios.get('https://capstonebe-production.up.railway.app/events');
       console.log(data);
       setEvents(data);
       setSortedEvents(data);

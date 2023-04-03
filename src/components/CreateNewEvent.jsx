@@ -28,7 +28,7 @@ export default function CreateNewEvent({onCloseForm}) {
 
     try {
         const token = localStorage.getItem('accessToken');
-        await axios.post('http://localhost:3001/events', eventData, {
+        await axios.post('https://capstonebe-production.up.railway.app/events', eventData, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -38,7 +38,7 @@ export default function CreateNewEvent({onCloseForm}) {
          navigate('/');
 
          // Fetch events to get newly created event
-         const response = await axios.get('http://localhost:3001/events');
+         const response = await axios.get('https://capstonebe-production.up.railway.app/events');
          const events = response.data;
          const createdEvent = events.find(event => event.title === eventData.title);
 

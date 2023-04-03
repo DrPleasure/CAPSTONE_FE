@@ -20,7 +20,7 @@ export default function MessagePopup({ show, onHide, recipientEmail, senderEmail
     };
   
     try {
-      const response = await axios.post("http://localhost:3001/events/send-email", msg);
+      const response = await axios.post("https://capstonebe-production.up.railway.app/events/send-email", msg);
       if (response.status === 200) {
         setShowAlert(true);
         setMessage("");

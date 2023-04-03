@@ -80,7 +80,7 @@ const handleReminderChange = async (e) => {
     const fetchEvent = async () => {
       const accessToken = localStorage.getItem("accessToken");
       try {
-        const { data } = await axios.get(`http://localhost:3001/events/${id}`, {
+        const { data } = await axios.get(`https://capstonebe-production.up.railway.app/events/${id}`, {
           headers: { Authorization: `Bearer ${accessToken}` },
         });
         setEvent(data);
@@ -97,7 +97,7 @@ const handleReminderChange = async (e) => {
     async function fetchUser() {
       const accessToken = localStorage.getItem("accessToken");
       try {
-        const { data } = await axios.get(`http://localhost:3001/users/me`, {
+        const { data } = await axios.get(`https://capstonebe-production.up.railway.app/users/me`, {
           headers: { Authorization: `Bearer ${accessToken}` },
         });
         setUserId(data._id);
@@ -133,7 +133,7 @@ const handleReminderChange = async (e) => {
     try {
       if (isAttending) {
         console.log("Deleting user from attendees array");
-        await axios.delete(`http://localhost:3001/events/${id}/attend`, {
+        await axios.delete(`https://capstonebe-production.up.railway.app/events/${id}/attend`, {
           headers: { Authorization: `Bearer ${accessToken}` },
         });
         
@@ -151,13 +151,13 @@ const handleReminderChange = async (e) => {
       } else {
         console.log("Adding user to attendees array");
         await axios.post(
-          `http://localhost:3001/events/${id}/attend`,
+          `https://capstonebe-production.up.railway.app/events/${id}/attend`,
           {},
           {
             headers: { Authorization: `Bearer ${accessToken}` },
           }
         );
-        const { data } = await axios.get(`http://localhost:3001/events/${id}`, {
+        const { data } = await axios.get(`https://capstonebe-production.up.railway.app/events/${id}`, {
           headers: { Authorization: `Bearer ${accessToken}` },
         });
         setEvent(data);
@@ -174,7 +174,7 @@ const handleReminderChange = async (e) => {
     const accessToken = localStorage.getItem("accessToken");
     try {
       const { data } = await axios.post(
-        `http://localhost:3001/events/${id}/comments`,
+        `https://capstonebe-production.up.railway.app/events/${id}/comments`,
         { text: comment }, // include the comment text in the request body
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
