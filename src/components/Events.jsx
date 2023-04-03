@@ -97,7 +97,6 @@ const [searchPerformed, setSearchPerformed] = useState(false);
 
   const handleSliderChange = (e) => {
     setSliderValue(e.target.value);
-    setMaxDistance(parseFloat(e.target.value));
   };
   
   
@@ -138,6 +137,32 @@ const [searchPerformed, setSearchPerformed] = useState(false);
     return eventDistance ? { ...event, distance: eventDistance.distance } : event;
   });
 
+  const checkDayMatch = (event, selectedDays) => {
+    const eventDate = new Date(event.date);
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    const nextWeek = new Date(today);
+    nextWeek.setDate(today.getDate() + 7);
+  
+    return selectedDays.some((selectedDay) => {
+      if (selectedDay === "Today" && eventDate.toDateString() === today.toDateString()) {
+        return true;
+      }
+      if (selectedDay === "Tomorrow" && eventDate.toDateString() === tomorrow.toDateString()) {
+        return true;
+      }
+      if (selectedDay === "This Week" && eventDate >= today && eventDate < nextWeek) {
+        return true;
+      }
+      if (selectedDay === "Next Week" && eventDate >= nextWeek && eventDate < nextWeek * 2) {
+        return true;
+      }
+      return false;
+    });
+  };
+  
+
   const filteredEvents = eventsWithDistances.filter((event) => {
     if (selectedCategories.length === 0 && selectedDays.length === 0 && maxDistance === Infinity) {
       return true;
@@ -150,37 +175,17 @@ const [searchPerformed, setSearchPerformed] = useState(false);
   
     let dayMatch = true;
     if (selectedDays.length > 0) {
-      const eventDate = new Date(event.date);
-      const today = new Date();
-      const tomorrow = new Date(today);
-      tomorrow.setDate(today.getDate() + 1);
-      const nextWeek = new Date(today);
-      nextWeek.setDate(today.getDate() + 7);
-  
-      dayMatch = selectedDays.some((selectedDay) => {
-        if (selectedDay === "Today" && eventDate.toDateString() === today.toDateString()) {
-          return true;
-        }
-        if (selectedDay === "Tomorrow" && eventDate.toDateString() === tomorrow.toDateString()) {
-          return true;
-        }
-        if (selectedDay === "This Week" && eventDate >= today && eventDate < nextWeek) {
-          return true;
-        }
-        if (selectedDay === "Next Week" && eventDate >= nextWeek && eventDate < nextWeek * 2) {
-          return true;
-        }
-        return false;
-      });
+      dayMatch = checkDayMatch(event, selectedDays);
     }
   
     let distanceMatch = true;
-    if (maxDistance !== Infinity) {
-      distanceMatch = event.distance <= maxDistance;
+    if (searchPerformed) {
+      distanceMatch = event.distance <= parseFloat(sliderValue);
     }
   
     return categoryMatch && dayMatch && distanceMatch;
   });
+  
   
   
 
@@ -259,7 +264,7 @@ const [searchPerformed, setSearchPerformed] = useState(false);
           >
             All Time
           </Dropdown.Item> */}
-          {["Today", "Tomorrow", "This Week", "Next Week"].map(time => (
+          {["Today", "Tomorrow", "This Week"].map(time => (
             <Dropdown.Item
               key={time}
               name={time}
@@ -302,10 +307,14 @@ const [searchPerformed, setSearchPerformed] = useState(false);
                   <strong className="yellowtext">Date:</strong> {formatDate(event.date)}
                 </Card.Text>
                 
-                  <Card.Text>
-                    <strong className="yellowtext">Distance:</strong> {event.distance} km
-                  </Card.Text>
-                
+                {
+  searchPerformed && (
+    <Card.Text>
+      <strong className="yellowtext">Distance:</strong> {event.distance} km
+    </Card.Text>
+  )
+}
+
               </Card.Body>
             </Card>
           </div>
