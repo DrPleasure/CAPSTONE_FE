@@ -81,21 +81,21 @@ export default function MyProfile() {
                     </div>
                     <MDBRow>
                       <MDBCol className="mb-2">
-                        <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
+                        <MDBCardImage src="https://ichef.bbci.co.uk/news/976/cpsprodpb/176A4/production/_112980959_sport1.png"
                           alt="image 1" className="w-100 rounded-3" />
                       </MDBCol>
                       <MDBCol className="mb-2">
-                        <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp"
+                        <MDBCardImage src="https://sportengland-production-files.s3.eu-west-2.amazonaws.com/s3fs-public/styles/max_width_1266px/public/2021-01/PA-55875259%20-%201266.jpg?VersionId=zVJoknym9gT3cgenq.BVR56G5XGZCzYX&itok=IdcoF3Ng"
                           alt="image 1" className="w-100 rounded-3" />
                       </MDBCol>
                     </MDBRow>
                     <MDBRow className="mb-2">
                       <MDBCol className="mb-2">
-                        <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp"
+                        <MDBCardImage src="https://guardian.ng/wp-content/uploads/2019/03/sport-equipment-e1555707764770.jpeg"
                           alt="image 1" className="w-100 rounded-3" />
                       </MDBCol>
                       <MDBCol className="mb-2">
-                        <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp"
+                        <MDBCardImage src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQigGRXvo2BM-AZ9XxkUkXkdC_PfHFkoLPk9w&usqp=CAU"
                           alt="image 1" className="w-100 rounded-3" />
                       </MDBCol>
                     </MDBRow>
